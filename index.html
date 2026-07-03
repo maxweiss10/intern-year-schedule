@@ -1,0 +1,776 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Max Weiss · Intern Year 2026–27 · UCSF Internal Medicine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Public+Sans:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F5F8F6; --card:#FFFFFF; --ink:#1C2A2E; --mut:#5C6D72; --line:#DCE5E1;
+  --uc:#2E4C8F; --sf:#0E7A68; --va:#A9761F; --clinic:#9C4A72; --nights:#473C7C;
+  --uc-t:#E7EDF9; --sf-t:#E2F2EE; --va-t:#F7EEDC; --clinic-t:#F6E7EF; --nights-t:#E9E6F5;
+  --vac:#E4A93C; --blank:#C9D3CF;
+  --disp:"Bricolage Grotesque",system-ui,sans-serif;
+  --body:"Public Sans",system-ui,-apple-system,sans-serif;
+  --mono:"Spline Sans Mono","SF Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:16px}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;padding:0 20px 90px}
+.wrap{max-width:1000px;margin:0 auto}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--uc);outline-offset:2px;border-radius:4px}
+
+/* ---------- header ---------- */
+.hdr{padding:56px 0 8px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(34px,6vw,58px);line-height:1.02;letter-spacing:-.015em;margin:10px 0 6px}
+h1 .yr{color:var(--mut);font-weight:600}
+.srcline{color:var(--mut);font-size:13.5px;max-width:72ch}
+.srcline b{color:var(--ink)}
+
+/* key facts */
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:10px;margin:26px 0 8px}
+.fact{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:13.5px}
+.fact b{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);margin-bottom:5px;font-weight:600}
+
+/* ---------- timeline ---------- */
+.tl{margin:34px 0 6px}
+.tlh{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:6px}
+h2{font-family:var(--disp);font-weight:800;font-size:24px;letter-spacing:-.01em}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:12.5px;color:var(--mut)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.dot{width:10px;height:10px;border-radius:3px;display:inline-block}
+.dot.uc{background:var(--uc)}.dot.sf{background:var(--sf)}.dot.va{background:var(--va)}
+.dot.clinic{background:var(--clinic)}.dot.nights{background:var(--nights)}
+.dot.vacd{background:repeating-linear-gradient(-45deg,var(--vac) 0 3px,#fff 3px 6px);border:1px solid var(--vac)}
+.tcap{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin:16px 0 6px}
+.strip{position:relative;display:flex;height:54px;border-radius:10px;overflow:hidden;border:1px solid var(--line);background:var(--card)}
+.seg{position:relative;display:flex;flex-direction:column;justify-content:center;padding:0 7px;color:#fff;text-decoration:none;
+  border-right:2px solid var(--paper);overflow:hidden;min-width:0;transition:filter .15s}
+.seg:last-of-type{border-right:0}
+.seg b{font-family:var(--mono);font-size:11px;opacity:.85;line-height:1.1}
+.seg span{font-family:var(--disp);font-weight:700;font-size:12.5px;white-space:nowrap;line-height:1.15}
+.seg:hover{filter:brightness(1.12)}
+.seg.uc{background:var(--uc)}.seg.sf{background:var(--sf)}.seg.va{background:var(--va)}
+.seg.clinic{background:var(--clinic)}.seg.nights{background:var(--nights)}
+.seg.blank{background:var(--blank);color:var(--mut)}
+.vac{position:absolute;top:0;bottom:0;pointer-events:none;
+  background:repeating-linear-gradient(-45deg,rgba(255,255,255,.85) 0 4px,rgba(228,169,60,.95) 4px 9px);
+  border-left:1px solid #fff;border-right:1px solid #fff}
+.ticks{position:relative;height:18px;margin-top:3px}
+.tick{position:absolute;transform:translateX(-1px);font-family:var(--mono);font-size:10.5px;color:var(--mut);
+  padding-left:5px;border-left:1px solid var(--line);line-height:18px}
+.thint{font-size:12.5px;color:var(--mut);margin-top:10px}
+
+/* ---------- index ---------- */
+.index{list-style:none;margin:30px 0 8px;display:grid;grid-template-columns:1fr 1fr;gap:4px 26px}
+.index a{display:grid;grid-template-columns:26px 12px 1fr auto auto;gap:8px;align-items:center;
+  text-decoration:none;padding:7px 8px;border-radius:8px;font-size:13.5px}
+.index a:hover{background:#fff}
+.index .no{font-family:var(--mono);font-size:11.5px;color:var(--mut)}
+.index .nm{font-weight:600}
+.index .dt{font-family:var(--mono);font-size:12px;color:var(--mut);white-space:nowrap}
+.index .du{font-family:var(--mono);font-size:11px;color:var(--mut);white-space:nowrap;text-align:right;min-width:56px}
+@media (max-width:760px){.index{grid-template-columns:1fr}.index .du{display:none}}
+
+/* ---------- cards ---------- */
+.blocks h2{margin:44px 0 4px}
+.bsub{color:var(--mut);font-size:13.5px;margin-bottom:18px;max-width:78ch}
+.card{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--line);
+  border-radius:14px;padding:20px 22px 18px;margin:0 0 18px;scroll-margin-top:14px}
+.card.uc{border-left-color:var(--uc)}.card.sf{border-left-color:var(--sf)}
+.card.va{border-left-color:var(--va)}.card.clinic{border-left-color:var(--clinic)}
+.card.nights{border-left-color:var(--nights)}
+.card header{display:grid;grid-template-columns:auto 1fr auto;gap:6px 16px;align-items:start}
+.cno{font-family:var(--mono);font-size:13px;color:var(--mut);padding-top:7px}
+.ct h3{font-family:var(--disp);font-weight:800;font-size:23px;letter-spacing:-.01em;line-height:1.1}
+.sub{color:var(--mut);font-size:13px;margin-top:2px}
+.cd{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.dates{font-family:var(--mono);font-size:13.5px;font-weight:600;white-space:nowrap}
+.pill{font-family:var(--mono);font-size:11px;letter-spacing:.04em;padding:3px 9px;border-radius:99px;
+  border:1px solid var(--line);color:var(--mut);white-space:nowrap}
+.pill.site{color:#fff;border:0}
+.pill.site.uc{background:var(--uc)}.pill.site.sf{background:var(--sf)}.pill.site.va{background:var(--va)}
+.pill.site.clinic{background:var(--clinic)}.pill.site.nights{background:var(--nights)}
+.vacpill{background:repeating-linear-gradient(-45deg,#fff 0 4px,#FBEED3 4px 8px);border-color:var(--vac);color:#7A5210;font-weight:600}
+@media (max-width:700px){
+  .card header{grid-template-columns:auto 1fr}
+  .cd{grid-column:1/-1;flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:flex-start}
+}
+.note{margin:12px 0 2px;font-size:14px;color:#374a50;background:var(--paper);border-radius:9px;padding:9px 12px}
+
+/* roster */
+.roster{margin-top:14px;display:grid;gap:13px}
+.rg h4{font-family:var(--mono);font-weight:600;font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--mut);margin-bottom:7px}
+.rg h4 span{opacity:.75;letter-spacing:.06em;text-transform:none;font-weight:400;margin-left:6px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:baseline;gap:7px;background:var(--paper);border:1px solid var(--line);
+  border-radius:8px;padding:4px 10px;font-size:13px;font-weight:500;line-height:1.35}
+.chip em{font-style:normal;font-family:var(--mono);font-size:10.5px;color:var(--mut)}
+.rg.pre .chip{background:#fff;border-style:dashed;color:var(--mut)}
+.empty{font-size:13px;color:var(--mut)}
+
+/* special panels */
+.panel{margin:14px 0 4px;border:1px solid var(--line);border-radius:11px;padding:13px 15px;background:#FBFDFC}
+.ptitle{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--mut);margin-bottom:9px}
+.hand{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:5px 0;font-size:13.5px}
+.hand+.hand{border-top:1px dashed var(--line)}
+.who{font-weight:600;background:var(--paper);border:1px solid var(--line);border-radius:7px;padding:2px 9px}
+.who.out{color:var(--mut);border-style:dashed;background:#fff}
+.who.you{background:var(--ink);color:#fff;border-color:var(--ink)}
+.arr{color:var(--mut);font-size:15px}
+.role{color:var(--mut);font-size:12.5px}
+.seats{border-collapse:collapse;width:100%;max-width:560px;font-size:13.5px}
+.seats th{font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--mut);
+  text-align:left;font-weight:600;padding:4px 14px 6px 0;border-bottom:1px solid var(--line)}
+.seats td{padding:6px 14px 6px 0;border-bottom:1px solid var(--line)}
+.seats td:first-child{font-family:var(--mono);font-size:12px;color:var(--mut)}
+.seats tr.me td{font-weight:700;background:var(--sf-t)}
+.pnote{margin-top:10px;font-size:12.5px;color:var(--mut);max-width:78ch}
+.slotline{display:flex;flex-wrap:wrap;gap:6px;align-items:stretch}
+.slot{display:flex;flex-direction:column;gap:1px;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:13px;font-weight:600}
+.slot em{font-style:normal;font-family:var(--mono);font-size:10.5px;font-weight:400;color:var(--mut)}
+.slot.me{background:var(--ink);color:#fff;border-color:var(--ink)}
+.slot.me em{color:#C7D2D6}
+.slot.gap{border-style:dashed;background:#fff;color:var(--mut);font-weight:400}
+
+/* caveats */
+.cavs{margin-top:40px;border-top:2px solid var(--ink);padding-top:16px}
+.cavs h2{font-size:19px}
+.cavs ul{margin:10px 0 0 18px;color:#374a50;font-size:13.5px;max-width:82ch}
+.cavs li{margin-bottom:8px}
+.foot{margin-top:34px;font-family:var(--mono);font-size:11px;color:var(--mut)}
+
+@media print{
+  body{padding:0;background:#fff;font-size:12px}
+  .seg,.pill.site,.vac,.dot,.slot.me,.who.you,.seats tr.me td{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .card,.panel{break-inside:avoid;box-shadow:none}
+  .thint{display:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hdr">
+  <p class="eyebrow">UCSF Internal Medicine · Intern year</p>
+  <h1>Max Weiss <span class="yr">2026–27</span></h1>
+  <p class="srcline">Built from the program's <b>Calendar&nbsp;By&nbsp;Staff</b> and <b>Grid&nbsp;By&nbsp;Staff</b> exports (both printed 7/3/2026; the two agree on every assignment). You appear as <b>Weiss,&nbsp;M</b> — <b>WeissS</b> in these files is a different person, a senior resident.</p>
+
+  <div class="facts">
+    <div class="fact"><b>Block rhythm</b>Rotations flip on <strong>Thursdays</strong>; date ranges are exact from the file.</div>
+    <div class="fact"><b>Vacations</b>Sep 2–9 · Nov 19–29 · Apr 15–21</div>
+    <div class="fact"><b>Who counts as whom</b>Interns = the 2026–27 class ("Last, F" names + off-service placeholders). Residents = R2/R3s ("LastnameF").</div>
+    <div class="fact"><b>Data horizon</b>Call/team-level detail exists only through mid-Aug — later blocks were assigned at the rotation level when this was printed.</div>
+  </div>
+</header>
+
+
+<section class="tl" aria-label="Year timeline">
+  <div class="tlh"><h2>The year at a glance</h2><div class="legend">
+    <span><i class="dot uc"></i>UC / Parnassus</span><span><i class="dot sf"></i>ZSFG</span><span><i class="dot va"></i>VA</span><span><i class="dot clinic"></i>Clinic</span><span><i class="dot nights"></i>Nights</span><span><i class="dot vacd"></i>Vacation</span>
+  </div></div>
+  <p class="tcap">Jun 29 – Dec 30, 2026 · blocks 1–10</p>
+  <div class="strip"><a class="seg clinic" style="width:9.189%" href="#b1" title="ClinicZ1600 · Jun 29 – Jul 15, 2026"><b>1</b><span>ClinicZ1600</span></a><a class="seg uc" style="width:7.568%" href="#b2" title="UC MICU · Jul 16 – 29, 2026"><b>2</b><span>UC MICU</span></a><a class="seg sf" style="width:7.568%" href="#b3" title="SF ICU · Jul 30 – Aug 12, 2026"><b>3</b><span>SF ICU</span></a><a class="seg va" style="width:15.135%" href="#b4" title="VAPQJ · Aug 13 – Sep 9, 2026"><b>4</b><span>VAPQJ</span></a><a class="seg uc" style="width:7.568%" href="#b5" title="UCW · Sep 10 – 23, 2026"><b>5</b><span>UCW</span></a><a class="seg uc" style="width:7.568%" href="#b6" title="UC GI · Sep 24 – Oct 7, 2026"><b>6</b><span>UC GI</span></a><a class="seg uc" style="width:15.135%" href="#b7" title="UC Cards · Oct 8 – Nov 4, 2026"><b>7</b><span>UC Cards</span></a><a class="seg va" style="width:7.568%" href="#b8" title="VAW · Nov 5 – 18, 2026"><b>8</b><span>VAW</span></a><a class="seg va" style="width:7.568%" href="#b9" title="VAAC · Nov 19 – Dec 2, 2026"><b>9</b><span>VAAC</span></a><a class="seg uc" style="width:15.135%" href="#b10" title="UC LTU · Dec 3 – 30, 2026"><b>10</b><span>UC LTU</span></a><span class="vac" style="left:35.135%;width:4.324%" title="Vacation Sep 2–Sep 9"></span><span class="vac" style="left:77.297%;width:5.946%" title="Vacation Nov 19–Nov 29"></span></div><div class="ticks"><span class="tick" style="left:1.081%">Jul</span><span class="tick" style="left:17.838%">Aug</span><span class="tick" style="left:34.595%">Sep</span><span class="tick" style="left:50.811%">Oct</span><span class="tick" style="left:67.568%">Nov</span><span class="tick" style="left:83.784%">Dec</span></div>
+  <p class="tcap">Dec 31, 2026 – Jun 28, 2027 · blocks 11–18</p>
+  <div class="strip"><a class="seg uc" style="width:15.556%" href="#b11" title="UCW · Dec 31, 2026 – Jan 27, 2027"><b>11</b><span>UCW</span></a><a class="seg sf" style="width:7.778%" href="#b12" title="SFW · Jan 28 – Feb 10, 2027"><b>12</b><span>SFW</span></a><a class="seg va" style="width:7.778%" href="#b13" title="VAAC · Feb 11 – 24, 2027"><b>13</b><span>VAAC</span></a><a class="seg sf" style="width:15.556%" href="#b14" title="SF Card · Feb 25 – Mar 24, 2027"><b>14</b><span>SF Card</span></a><a class="seg va" style="width:7.778%" href="#b15" title="VAW · Mar 25 – Apr 7, 2027"><b>15</b><span>VAW</span></a><a class="seg nights" style="width:7.778%" href="#b16" title="Flex Night Intern · Apr 8 – 21, 2027"><b>16</b><span>Flex Night Intern</span></a><a class="seg sf" style="width:15.556%" href="#b17" title="SFW · Apr 22 – May 19, 2027"><b>17</b><span>SFW</span></a><a class="seg uc" style="width:17.778%" href="#b18" title="UCED · May 20 – Jun 20, 2027"><b>18</b><span>UCED</span></a><span class="seg blank" style="width:4.444%" title="Jun 21–28 · unscheduled"><span>—</span></span><span class="vac" style="left:58.333%;width:3.889%" title="Vacation Apr 15–Apr 21"></span></div><div class="ticks"><span class="tick" style="left:0.556%">Jan</span><span class="tick" style="left:17.778%">Feb</span><span class="tick" style="left:33.333%">Mar</span><span class="tick" style="left:50.556%">Apr</span><span class="tick" style="left:67.222%">May</span><span class="tick" style="left:84.444%">Jun</span></div>
+  <p class="thint">Widths are to scale. Tap any block to jump to its detail card.</p>
+</section>
+
+<ol class="index"><li><a href="#b1"><span class="no">01</span><span class="dot clinic"></span><span class="nm">ClinicZ1600</span><span class="dt">Jun 29 – Jul 15, 2026</span><span class="du">17 days</span></a></li><li><a href="#b2"><span class="no">02</span><span class="dot uc"></span><span class="nm">UC MICU</span><span class="dt">Jul 16 – 29, 2026</span><span class="du">2 weeks</span></a></li><li><a href="#b3"><span class="no">03</span><span class="dot sf"></span><span class="nm">SF ICU</span><span class="dt">Jul 30 – Aug 12, 2026</span><span class="du">2 weeks</span></a></li><li><a href="#b4"><span class="no">04</span><span class="dot va"></span><span class="nm">VAPQJ</span><span class="dt">Aug 13 – Sep 9, 2026</span><span class="du">4 weeks</span></a></li><li><a href="#b5"><span class="no">05</span><span class="dot uc"></span><span class="nm">UCW</span><span class="dt">Sep 10 – 23, 2026</span><span class="du">2 weeks</span></a></li><li><a href="#b6"><span class="no">06</span><span class="dot uc"></span><span class="nm">UC GI</span><span class="dt">Sep 24 – Oct 7, 2026</span><span class="du">2 weeks</span></a></li><li><a href="#b7"><span class="no">07</span><span class="dot uc"></span><span class="nm">UC Cards</span><span class="dt">Oct 8 – Nov 4, 2026</span><span class="du">4 weeks</span></a></li><li><a href="#b8"><span class="no">08</span><span class="dot va"></span><span class="nm">VAW</span><span class="dt">Nov 5 – 18, 2026</span><span class="du">2 weeks</span></a></li><li><a href="#b9"><span class="no">09</span><span class="dot va"></span><span class="nm">VAAC</span><span class="dt">Nov 19 – Dec 2, 2026</span><span class="du">2 weeks</span></a></li><li><a href="#b10"><span class="no">10</span><span class="dot uc"></span><span class="nm">UC LTU</span><span class="dt">Dec 3 – 30, 2026</span><span class="du">4 weeks</span></a></li><li><a href="#b11"><span class="no">11</span><span class="dot uc"></span><span class="nm">UCW</span><span class="dt">Dec 31, 2026 – Jan 27, 2027</span><span class="du">4 weeks</span></a></li><li><a href="#b12"><span class="no">12</span><span class="dot sf"></span><span class="nm">SFW</span><span class="dt">Jan 28 – Feb 10, 2027</span><span class="du">2 weeks</span></a></li><li><a href="#b13"><span class="no">13</span><span class="dot va"></span><span class="nm">VAAC</span><span class="dt">Feb 11 – 24, 2027</span><span class="du">2 weeks</span></a></li><li><a href="#b14"><span class="no">14</span><span class="dot sf"></span><span class="nm">SF Card</span><span class="dt">Feb 25 – Mar 24, 2027</span><span class="du">4 weeks</span></a></li><li><a href="#b15"><span class="no">15</span><span class="dot va"></span><span class="nm">VAW</span><span class="dt">Mar 25 – Apr 7, 2027</span><span class="du">2 weeks</span></a></li><li><a href="#b16"><span class="no">16</span><span class="dot nights"></span><span class="nm">Flex Night Intern</span><span class="dt">Apr 8 – 21, 2027</span><span class="du">2 weeks</span></a></li><li><a href="#b17"><span class="no">17</span><span class="dot sf"></span><span class="nm">SFW</span><span class="dt">Apr 22 – May 19, 2027</span><span class="du">4 weeks</span></a></li><li><a href="#b18"><span class="no">18</span><span class="dot uc"></span><span class="nm">UCED</span><span class="dt">May 20 – Jun 20, 2027</span><span class="du">32 days</span></a></li></ol>
+
+<section class="blocks">
+  <h2>Block by block</h2>
+  <p class="bsub">Each card shows the interns who rotated off the day you start ("on before you"), then everyone scheduled on the same rotation code during your dates. A small date range on a name means partial overlap — residents flip on an offset cycle, so some overlap only a day or two at the edges.</p>
+  
+<article class="card clinic" id="b1">
+  <header>
+    <div class="cno">01</div>
+    <div class="ct">
+      <h3>ClinicZ1600</h3>
+      <p class="sub">Ambulatory · continuity clinic</p>
+    </div>
+    <div class="cd">
+      <span class="dates">Jun 29 – Jul 15, 2026</span>
+      <span class="pill">17 days</span>
+      <span class="pill site clinic">Clinic</span>
+    </div>
+  </header>
+  <p class="note">Clinic sessions Mon/Tue/Wed (± Fri) at Z1600; intern half-day Jul 1. First block of the academic year.</p>
+  
+  <div class="roster">
+    <section class="rg pre">
+      <h4>Interns on before you <span>rotated off Jun 28</span></h4>
+      <p class="empty">— Start of the academic year; the outgoing 2025–26 interns aren't in this file.</p>
+    </section>
+    <section class="rg">
+      <h4>Interns with you</h4>
+      <div class="chips"><span class="chip">Holthe, J</span><span class="chip">Li, V</span><span class="chip">Tolby, L</span></div>
+    </section>
+    <section class="rg">
+      <h4>Residents with you</h4>
+      <p class="empty">— none on this rotation code (attending-supervised / intern-only block)</p>
+    </section>
+  </div>
+</article>
+<article class="card uc" id="b2">
+  <header>
+    <div class="cno">02</div>
+    <div class="ct">
+      <h3>UC MICU</h3>
+      <p class="sub">Medical ICU · Parnassus</p>
+    </div>
+    <div class="cd">
+      <span class="dates">Jul 16 – 29, 2026</span>
+      <span class="pill">2 weeks</span>
+      <span class="pill site uc">UC</span>
+    </div>
+  </header>
+  
+  
+<div class="panel">
+  <div class="ptitle">Role handoff</div>
+  <div class="hand"><span class="who out">Mundada, M</span><span class="arr">→</span><span class="who you">You</span><span class="role">Night intern · you take nights Jul 16 (Mundada's last night Jul 14, transition Jul 15)</span></div>
+  <div class="hand"><span class="who out">Tran, Q</span><span class="arr">→</span><span class="who">Pulsifer, B</span><span class="role">Day intern</span></div>
+  <div class="hand"><span class="who you">You</span><span class="arr">⇄</span><span class="who">Pulsifer, B</span><span class="role">Mid-block swap: you move to days Jul 23, Pulsifer to nights (clinic day for you Jul 27)</span></div>
+</div>
+  <div class="roster">
+    <section class="rg pre">
+      <h4>Interns on before you <span>rotated off Jul 15</span></h4>
+      <div class="chips"><span class="chip">Mundada, M</span><span class="chip">Tran, Q</span></div>
+    </section>
+    <section class="rg">
+      <h4>Interns with you</h4>
+      <div class="chips"><span class="chip">Pulsifer, B</span></div>
+    </section>
+    <section class="rg">
+      <h4>Residents with you</h4>
+      <div class="chips"><span class="chip">AgezewS<em>7/16–7/27</em></span><span class="chip">GreenbergE</span><span class="chip">IslamK<em>7/28–7/29</em></span><span class="chip">IyerS<em>7/16–7/27</em></span><span class="chip">SieversM<em>7/28–7/29</em></span></div>
+    </section>
+  </div>
+</article>
+<article class="card sf" id="b3">
+  <header>
+    <div class="cno">03</div>
+    <div class="ct">
+      <h3>SF ICU</h3>
+      <p class="sub">ICU · ZSFG</p>
+    </div>
+    <div class="cd">
+      <span class="dates">Jul 30 – Aug 12, 2026</span>
+      <span class="pill">2 weeks</span>
+      <span class="pill site sf">ZSFG</span>
+    </div>
+  </header>
+  
+  
+<div class="panel">
+  <div class="ptitle">Seat-by-seat handoff · 4 intern seats</div>
+  <table class="seats">
+    <tr><th>Seat</th><th>Outgoing (1st half)</th><th>Incoming (2nd half)</th></tr>
+    <tr><td>Int 1</td><td>Krysov, V</td><td>Pulsifer, B</td></tr>
+    <tr class="me"><td>Int 2</td><td>Shah, N</td><td>You</td></tr>
+    <tr><td>Int 3</td><td>Lux, S</td><td>Krishnamurthy, N</td></tr>
+    <tr><td>Int 4</td><td>Ho, S</td><td>Olguin, F</td></tr>
+  </table>
+  <p class="pnote">Day residents Jul 30 – Aug 10: WileR (Res 1) · ChenSai (Res 2) · Wen (Res 3) · HaddadS (Res 4); they flip Aug 11 to ChennakesavaluM, DaneshK, LuffM, ZhaoH. Overnight resident (separate "SF ICU Night" code): EscobedoV Jul 30 – Aug 10, then PanC Aug 11–12.</p>
+</div>
+  <div class="roster">
+    <section class="rg pre">
+      <h4>Interns on before you <span>rotated off Jul 29</span></h4>
+      <div class="chips"><span class="chip">Ho, S</span><span class="chip">Krysov, V</span><span class="chip">Lux, S</span><span class="chip">Shah, N</span></div>
+    </section>
+    <section class="rg">
+      <h4>Interns with you</h4>
+      <div class="chips"><span class="chip">Krishnamurthy, N</span><span class="chip">Olguin, F</span><span class="chip">Pulsifer, B</span></div>
+    </section>
+    <section class="rg">
+      <h4>Residents with you</h4>
+      <div class="chips"><span class="chip">ChenSai<em>7/30–8/10</em></span><span class="chip">ChennakesavaluM<em>8/11–8/12</em></span><span class="chip">DaneshK<em>8/11–8/12</em></span><span class="chip">HaddadS<em>7/30–8/10</em></span><span class="chip">LuffM<em>8/11–8/12</em></span><span class="chip">Wen<em>7/30–8/10</em></span><span class="chip">WileR<em>7/30–8/10</em></span><span class="chip">ZhaoH<em>8/11–8/12</em></span></div>
+    </section>
+  </div>
+</article>
+<article class="card va" id="b4">
+  <header>
+    <div class="cno">04</div>
+    <div class="ct">
+      <h3>VAPQJ</h3>
+      <p class="sub">VA ambulatory block</p>
+    </div>
+    <div class="cd">
+      <span class="dates">Aug 13 – Sep 9, 2026</span>
+      <span class="pill">4 weeks</span><span class="pill vacpill">Vacation Sep 2–Sep 9</span>
+      <span class="pill site va">VA</span>
+    </div>
+  </header>
+  <p class="note">Vacation Sep 2–9 falls at the end of this block.</p>
+  
+  <div class="roster">
+    <section class="rg pre">
+      <h4>Interns on before you <span>rotated off Aug 12</span></h4>
+      <div class="chips"><span class="chip">Gim, H</span><span class="chip">Gropper, R</span><span class="chip">Mohama, A</span><span class="chip">Rusznak, M</span><span class="chip">Vidyasagar, N</span><span class="chip">Yan, M</span></div>
+    </section>
+    <section class="rg">
+      <h4>Interns with you</h4>
+      <div class="chips"><span class="chip">Ho, S</span><span class="chip">Hukamdad, M</span><span class="chip">Lee, G</span><span class="chip">Lewontin, M</span><span class="chip">Marin, M</span></div>
+    </section>
+    <section class="rg">
+      <h4>Residents with you</h4>
+      <p class="empty">— none on this rotation code (attending-supervised / intern-only block)</p>
+    </section>
+  </div>
+</article>
+<article class="card uc" id="b5">
+  <header>
+    <div class="cno">05</div>
+    <div class="ct">
+      <h3>UCW</h3>
+      <p class="sub">UC wards</p>
+    </div>
+    <div class="cd">
+      <span class="dates">Sep 10 – 23, 2026</span>
+      <span class="pill">2 weeks</span>
+      <span class="pill site uc">UC</span>
+    </div>
+  </header>
+  
+  
+  <div class="roster">
+    <section class="rg pre">
+      <h4>Interns on before you <span>rotated off Sep 9</span></h4>
+      <div class="chips"><span class="chip">Carvalho, C</span><span class="chip">Chiu, A</span><span class="chip">Dai, D (N)</span><span class="chip">Hassan, N (N)</span><span class="chip">Iyer, A</span><span class="chip">Krishnamurthy, N</span><span class="chip">Krysov, V</span><span class="chip">Lee, M</span><span class="chip">Li, V</span><span class="chip">Liera, D (N)</span><span class="chip">Ni, L (N)</span><span class="chip">Salazar, S</span><span class="chip">Ulene, S</span><span class="chip">Vidyasagar, N</span><span class="chip">Wu, K</span></div>
+    </section>
+    <section class="rg">
+      <h4>Interns with you</h4>
+      <div class="chips"><span class="chip">Agarwal, G (A)</span><span class="chip">Busque, V</span><span class="chip">Cooper, M (N)</span><span class="chip">Fields, J</span><span class="chip">Hermanns, I (A)</span><span class="chip">Kass, N (N)</span><span class="chip">Lowder, E (A)</span><span class="chip">OB Intern</span><span class="chip">Rees, B (N)</span><span class="chip">Roldan, V (N)</span><span class="chip">Rusznak, M</span><span class="chip">Saharan, A</span><span class="chip">Straus, E</span><span class="chip">Yi, G</span><span class="chip">Zhu, L (A)</span></div>
+    </section>
+    <section class="rg">
+      <h4>Residents with you</h4>
+      <div class="chips"><span class="chip">ButlerJ<em>9/22–9/23</em></span><span class="chip">DayY</span><span class="chip">EscobedoV<em>9/10–9/21</em></span><span class="chip">GreenbergE</span><span class="chip">HaddadS</span><span class="chip">HsuS</span><span class="chip">MorinH</span><span class="chip">PhelpsN<em>9/10–9/21</em></span><span class="chip">SinghN<em>9/22–9/23</em></span><span class="chip">WileR</span></div>
+    </section>
+  </div>
+</article>
+<article class="card uc" id="b6">
+  <header>
+    <div class="cno">06</div>
+    <div class="ct">
+      <h3>UC GI</h3>
+      <p class="sub">GI · one-trainee slot</p>
+    </div>
+    <div class="cd">
+      <span class="dates">Sep 24 – Oct 7, 2026</span>
+      <span class="pill">2 weeks</span>
+      <span class="pill site uc">UC</span>
+    </div>
+  </header>
+  
+  
+<div class="panel">
+  <div class="ptitle">One-trainee slot · who holds it around you</div>
+  <div class="slotline">
+    <span class="slot">Holthe, J <em>Aug 13–26 · intern</em></span>
+    <span class="slot">TranT <em>Sep 8–21 · resident</em></span>
+    <span class="slot gap">empty <em>Sep 22–23</em></span>
+    <span class="slot me">You <em>Sep 24 – Oct 7</em></span>
+    <span class="slot gap">empty</span>
+    <span class="slot">LuM <em>Nov 3–16 · resident</em></span>
+  </div>
+  <p class="pnote">UC GI alternates between interns and residents, one at a time. The person immediately before you is TranT, a resident — no intern directly precedes you.</p>
+</div>
+  <div class="roster">
+    <section class="rg pre">
+      <h4>Interns on before you <span>rotated off Sep 23</span></h4>
+      <p class="empty">— No intern directly precedes you; see the slot sequence below.</p>
+    </section>
+    <section class="rg">
+      <h4>Interns with you</h4>
+      <p class="empty">— none on this rotation code</p>
+    </section>
+    <section class="rg">
+      <h4>Residents with you</h4>
+      <p class="empty">— none on this rotation code (attending-supervised / intern-only block)</p>
+    </section>
+  </div>
+</article>
+<article class="card uc" id="b7">
+  <header>
+    <div class="cno">07</div>
+    <div class="ct">
+      <h3>UC Cards</h3>
+      <p class="sub">Cardiology · UC</p>
+    </div>
+    <div class="cd">
+      <span class="dates">Oct 8 – Nov 4, 2026</span>
+      <span class="pill">4 weeks</span>
+      <span class="pill site uc">UC</span>
+    </div>
+  </header>
+  
+  
+  <div class="roster">
+    <section class="rg pre">
+      <h4>Interns on before you <span>rotated off Oct 7</span></h4>
+      <div class="chips"><span class="chip">Ho, S</span><span class="chip">Iyer, A</span></div>
+    </section>
+    <section class="rg">
+      <h4>Interns with you</h4>
+      <div class="chips"><span class="chip">Marin, M</span></div>
+    </section>
+    <section class="rg">
+      <h4>Residents with you</h4>
+      <div class="chips"><span class="chip">ClairV<em>10/8–10/19</em></span><span class="chip">HsuS<em>11/3–11/4</em></span><span class="chip">RentonN<em>10/8–11/2</em></span><span class="chip">SchroederJ<em>11/3–11/4</em></span><span class="chip">ZhaoH<em>10/20–11/2</em></span></div>
+    </section>
+  </div>
+</article>
+<article class="card va" id="b8">
+  <header>
+    <div class="cno">08</div>
+    <div class="ct">
+      <h3>VAW</h3>
+      <p class="sub">VA wards</p>
+    </div>
+    <div class="cd">
+      <span class="dates">Nov 5 – 18, 2026</span>
+      <span class="pill">2 weeks</span>
+      <span class="pill site va">VA</span>
+    </div>
+  </header>
+  
+  
+  <div class="roster">
+    <section class="rg pre">
+      <h4>Interns on before you <span>rotated off Nov 4</span></h4>
+      <div class="chips"><span class="chip">Agarwal, G (A)</span><span class="chip">Cooper, M (N)</span><span class="chip">Fields, J</span><span class="chip">Mundada, M</span><span class="chip">Psych Intern 4</span><span class="chip">Rees, B (N)</span><span class="chip">Roldan, V (N)</span><span class="chip">Tiu, R</span><span class="chip">Yan, M</span></div>
+    </section>
+    <section class="rg">
+      <h4>Interns with you</h4>
+      <div class="chips"><span class="chip">Banerjee, S</span><span class="chip">Hogg, G (N)</span><span class="chip">Psych Intern 3</span><span class="chip">Reed, S</span><span class="chip">Roh, M</span><span class="chip">Ruxin, T</span><span class="chip">Sklar, M (A)</span><span class="chip">Tolby, L</span><span class="chip">Vital, E (N)</span></div>
+    </section>
+    <section class="rg">
+      <h4>Residents with you</h4>
+      <div class="chips"><span class="chip">AvulaV<em>11/5–11/16</em></span><span class="chip">DeanE<em>11/17–11/18</em></span><span class="chip">FooteJ</span><span class="chip">GreenbergE<em>11/5–11/16</em></span><span class="chip">GrossA<em>11/17–11/18</em></span><span class="chip">HillC</span><span class="chip">SinghN</span></div>
+    </section>
+  </div>
+</article>
+<article class="card va" id="b9">
+  <header>
+    <div class="cno">09</div>
+    <div class="ct">
+      <h3>VAAC</h3>
+      <p class="sub">VA ambulatory</p>
+    </div>
+    <div class="cd">
+      <span class="dates">Nov 19 – Dec 2, 2026</span>
+      <span class="pill">2 weeks</span><span class="pill vacpill">Vacation Nov 19–Nov 29</span>
+      <span class="pill site va">VA</span>
+    </div>
+  </header>
+  <p class="note">Vacation Nov 19–29 — you effectively work only ~Nov 30 – Dec 2 of this block.</p>
+  
+  <div class="roster">
+    <section class="rg pre">
+      <h4>Interns on before you <span>rotated off Nov 18</span></h4>
+      <div class="chips"><span class="chip">Iyer, A</span><span class="chip">Krysov, V</span></div>
+    </section>
+    <section class="rg">
+      <h4>Interns with you</h4>
+      <div class="chips"><span class="chip">Lin, S</span><span class="chip">Reed, S</span><span class="chip">Straus, E</span><span class="chip">Tiu, R</span></div>
+    </section>
+    <section class="rg">
+      <h4>Residents with you</h4>
+      <p class="empty">— none on this rotation code (attending-supervised / intern-only block)</p>
+    </section>
+  </div>
+</article>
+<article class="card uc" id="b10">
+  <header>
+    <div class="cno">10</div>
+    <div class="ct">
+      <h3>UC LTU</h3>
+      <p class="sub">UC · LTU service</p>
+    </div>
+    <div class="cd">
+      <span class="dates">Dec 3 – 30, 2026</span>
+      <span class="pill">4 weeks</span>
+      <span class="pill site uc">UC</span>
+    </div>
+  </header>
+  
+  
+  <div class="roster">
+    <section class="rg pre">
+      <h4>Interns on before you <span>rotated off Dec 2</span></h4>
+      <div class="chips"><span class="chip">Carvalho, C</span><span class="chip">Li, V</span></div>
+    </section>
+    <section class="rg">
+      <h4>Interns with you</h4>
+      <div class="chips"><span class="chip">Tran, Q</span></div>
+    </section>
+    <section class="rg">
+      <h4>Residents with you</h4>
+      <p class="empty">— none on this rotation code (attending-supervised / intern-only block)</p>
+    </section>
+  </div>
+</article>
+<article class="card uc" id="b11">
+  <header>
+    <div class="cno">11</div>
+    <div class="ct">
+      <h3>UCW</h3>
+      <p class="sub">UC wards</p>
+    </div>
+    <div class="cd">
+      <span class="dates">Dec 31, 2026 – Jan 27, 2027</span>
+      <span class="pill">4 weeks</span>
+      <span class="pill site uc">UC</span>
+    </div>
+  </header>
+  <p class="note">Intern halves flip mid-block: four interns leave Jan 13 and four join Jan 14.</p>
+  
+  <div class="roster">
+    <section class="rg pre">
+      <h4>Interns on before you <span>rotated off Dec 30</span></h4>
+      <div class="chips"><span class="chip">Dasika, P</span><span class="chip">Gropper, R</span><span class="chip">Howlett, C</span><span class="chip">James, M (N)</span><span class="chip">Jiang, E</span><span class="chip">Kumar, W</span><span class="chip">Liera, D (N)</span><span class="chip">Lin, S</span><span class="chip">Marin, M</span><span class="chip">Mu, A</span><span class="chip">Olguin, F</span><span class="chip">Oshinowo, O</span><span class="chip">Salazar, S</span><span class="chip">Shen, E</span><span class="chip">Vital, E (N)</span><span class="chip">Wu, K</span></div>
+    </section>
+    <section class="rg">
+      <h4>Interns with you</h4>
+      <div class="chips"><span class="chip">Chiu, A</span><span class="chip">Fields, J</span><span class="chip">Flynn, J</span><span class="chip">Iyer, A<em>12/31–1/13</em></span><span class="chip">Kass, N (N)</span><span class="chip">Krysov, V<em>1/14–1/27</em></span><span class="chip">Lee, G<em>1/14–1/27</em></span><span class="chip">Li, V<em>12/31–1/13</em></span><span class="chip">Lin, E<em>1/14–1/27</em></span><span class="chip">Pulsifer, B</span><span class="chip">Rees, B (N)</span><span class="chip">Roh, M</span><span class="chip">Roldan, V (N)</span><span class="chip">Saharan, A</span><span class="chip">Shariff, D<em>12/31–1/13</em></span><span class="chip">Tolby, L<em>12/31–1/13</em></span><span class="chip">Tsakiris, E</span><span class="chip">Wu, K<em>1/14–1/27</em></span><span class="chip">Yan, M</span></div>
+    </section>
+    <section class="rg">
+      <h4>Residents with you</h4>
+      <div class="chips"><span class="chip">ButlerJ<em>12/31–1/25</em></span><span class="chip">Domeracki<em>12/31–1/11</em></span><span class="chip">FooteJ<em>12/31–1/25</em></span><span class="chip">HillC<em>12/31–1/11</em></span><span class="chip">HuangAnr<em>12/31–1/25</em></span><span class="chip">HuangH<em>1/26–1/27</em></span><span class="chip">HuangJ<em>1/12–1/25</em></span><span class="chip">IyerS<em>12/31–1/25</em></span><span class="chip">Khan<em>12/31–1/25</em></span><span class="chip">LianT<em>1/26–1/27</em></span><span class="chip">RuizE<em>1/26–1/27</em></span><span class="chip">ScarboroughJ<em>1/12–1/25</em></span><span class="chip">SchroederJ<em>12/31–1/25</em></span><span class="chip">SeeC<em>1/26–1/27</em></span><span class="chip">SelvanB<em>1/26–1/27</em></span><span class="chip">TokarevaY<em>1/26–1/27</em></span><span class="chip">TrinhK<em>1/26–1/27</em></span><span class="chip">VaradharajuluS<em>1/26–1/27</em></span></div>
+    </section>
+  </div>
+</article>
+<article class="card sf" id="b12">
+  <header>
+    <div class="cno">12</div>
+    <div class="ct">
+      <h3>SFW</h3>
+      <p class="sub">ZSFG wards</p>
+    </div>
+    <div class="cd">
+      <span class="dates">Jan 28 – Feb 10, 2027</span>
+      <span class="pill">2 weeks</span>
+      <span class="pill site sf">ZSFG</span>
+    </div>
+  </header>
+  
+  
+  <div class="roster">
+    <section class="rg pre">
+      <h4>Interns on before you <span>rotated off Jan 27</span></h4>
+      <div class="chips"><span class="chip">Dasika, P</span><span class="chip">Howlett, C</span><span class="chip">Hu, B</span><span class="chip">Lee, M</span><span class="chip">Lin, S</span><span class="chip">Olguin, F</span><span class="chip">Ruxin, T</span><span class="chip">Salazar, S</span><span class="chip">Shirai, N</span><span class="chip">Tiu, R</span></div>
+    </section>
+    <section class="rg">
+      <h4>Interns with you</h4>
+      <div class="chips"><span class="chip">Agarwal, G (A)</span><span class="chip">Gim, H</span><span class="chip">Kass, N (N)</span><span class="chip">Liera, D (N)</span><span class="chip">Psych Intern 1</span><span class="chip">Pulsifer, B</span><span class="chip">Rees, B (N)</span><span class="chip">Roh, M</span><span class="chip">Straus, E</span></div>
+    </section>
+    <section class="rg">
+      <h4>Residents with you</h4>
+      <div class="chips"><span class="chip">Agrawal<em>1/28–2/8</em></span><span class="chip">HuertaC</span><span class="chip">KyalwaziA<em>2/9–2/10</em></span><span class="chip">LuM</span><span class="chip">MeltzerA</span><span class="chip">WeissS</span></div>
+    </section>
+  </div>
+</article>
+<article class="card va" id="b13">
+  <header>
+    <div class="cno">13</div>
+    <div class="ct">
+      <h3>VAAC</h3>
+      <p class="sub">VA ambulatory</p>
+    </div>
+    <div class="cd">
+      <span class="dates">Feb 11 – 24, 2027</span>
+      <span class="pill">2 weeks</span>
+      <span class="pill site va">VA</span>
+    </div>
+  </header>
+  
+  
+  <div class="roster">
+    <section class="rg pre">
+      <h4>Interns on before you <span>rotated off Feb 10</span></h4>
+      <div class="chips"><span class="chip">Krishnamurthy, N</span><span class="chip">Lee, Y</span><span class="chip">Lewontin, M</span><span class="chip">Shen, E</span></div>
+    </section>
+    <section class="rg">
+      <h4>Interns with you</h4>
+      <div class="chips"><span class="chip">Ulene, S</span><span class="chip">Yoo, S</span></div>
+    </section>
+    <section class="rg">
+      <h4>Residents with you</h4>
+      <p class="empty">— none on this rotation code (attending-supervised / intern-only block)</p>
+    </section>
+  </div>
+</article>
+<article class="card sf" id="b14">
+  <header>
+    <div class="cno">14</div>
+    <div class="ct">
+      <h3>SF Card</h3>
+      <p class="sub">Cardiology · ZSFG</p>
+    </div>
+    <div class="cd">
+      <span class="dates">Feb 25 – Mar 24, 2027</span>
+      <span class="pill">4 weeks</span>
+      <span class="pill site sf">ZSFG</span>
+    </div>
+  </header>
+  
+  
+  <div class="roster">
+    <section class="rg pre">
+      <h4>Interns on before you <span>rotated off Feb 24</span></h4>
+      <div class="chips"><span class="chip">Li, V</span><span class="chip">Mundada, M</span><span class="chip">Shirai, N</span><span class="chip">Smith, B</span></div>
+    </section>
+    <section class="rg">
+      <h4>Interns with you</h4>
+      <div class="chips"><span class="chip">Coloma, M</span><span class="chip">Krishnamurthy, N</span><span class="chip">Yan, M</span></div>
+    </section>
+    <section class="rg">
+      <h4>Residents with you</h4>
+      <div class="chips"><span class="chip">ClairV<em>3/23–3/24</em></span><span class="chip">KlashmanM<em>2/25–3/22</em></span><span class="chip">LianT<em>3/23–3/24</em></span><span class="chip">MorinH<em>3/9–3/22</em></span><span class="chip">OlesW<em>2/25–3/8</em></span><span class="chip">PearsonS<em>2/25–3/22</em></span><span class="chip">VaradharajuluS<em>3/23–3/24</em></span><span class="chip">Wen<em>2/25–3/22</em></span><span class="chip">ZhaoH<em>3/23–3/24</em></span></div>
+    </section>
+  </div>
+</article>
+<article class="card va" id="b15">
+  <header>
+    <div class="cno">15</div>
+    <div class="ct">
+      <h3>VAW</h3>
+      <p class="sub">VA wards</p>
+    </div>
+    <div class="cd">
+      <span class="dates">Mar 25 – Apr 7, 2027</span>
+      <span class="pill">2 weeks</span>
+      <span class="pill site va">VA</span>
+    </div>
+  </header>
+  
+  
+  <div class="roster">
+    <section class="rg pre">
+      <h4>Interns on before you <span>rotated off Mar 24</span></h4>
+      <div class="chips"><span class="chip">Carvalho, C</span><span class="chip">Chiu, A</span><span class="chip">Dasika, P</span><span class="chip">Hermanns, I (A)</span><span class="chip">Li, V</span><span class="chip">Oshinowo, O</span><span class="chip">Psych Intern 3</span><span class="chip">Shirai, N</span><span class="chip">Tran, Q</span><span class="chip">Vidyasagar, N</span></div>
+    </section>
+    <section class="rg">
+      <h4>Interns with you</h4>
+      <div class="chips"><span class="chip">Abiad, A</span><span class="chip">Holthe, J</span><span class="chip">Hu, B</span><span class="chip">Hukamdad, M</span><span class="chip">Lee, M</span><span class="chip">Pulsifer, B</span><span class="chip">Shen, E</span><span class="chip">Tsakiris, E</span><span class="chip">Wu, K</span></div>
+    </section>
+    <section class="rg">
+      <h4>Residents with you</h4>
+      <div class="chips"><span class="chip">AmbadyL<em>3/25–4/5</em></span><span class="chip">GamboaH<em>3/25–4/5</em></span><span class="chip">GuevarraO<em>4/6–4/7</em></span><span class="chip">LuffM<em>4/6–4/7</em></span><span class="chip">MellerA</span><span class="chip">TranT</span><span class="chip">WeissS</span></div>
+    </section>
+  </div>
+</article>
+<article class="card nights" id="b16">
+  <header>
+    <div class="cno">16</div>
+    <div class="ct">
+      <h3>Flex Night Intern</h3>
+      <p class="sub">Night float</p>
+    </div>
+    <div class="cd">
+      <span class="dates">Apr 8 – 21, 2027</span>
+      <span class="pill">2 weeks</span><span class="pill vacpill">Vacation Apr 15–Apr 21</span>
+      <span class="pill site nights">Nights</span>
+    </div>
+  </header>
+  <p class="note">Nights ~Apr 8–14, then vacation Apr 15–21 closes out the block.</p>
+  
+  <div class="roster">
+    <section class="rg pre">
+      <h4>Interns on before you <span>rotated off Apr 7</span></h4>
+      <div class="chips"><span class="chip">Krishnamurthy, N</span><span class="chip">Shah, N</span></div>
+    </section>
+    <section class="rg">
+      <h4>Interns with you</h4>
+      <div class="chips"><span class="chip">Vidyasagar, N</span></div>
+    </section>
+    <section class="rg">
+      <h4>Residents with you</h4>
+      <p class="empty">— none on this rotation code (attending-supervised / intern-only block)</p>
+    </section>
+  </div>
+</article>
+<article class="card sf" id="b17">
+  <header>
+    <div class="cno">17</div>
+    <div class="ct">
+      <h3>SFW</h3>
+      <p class="sub">ZSFG wards</p>
+    </div>
+    <div class="cd">
+      <span class="dates">Apr 22 – May 19, 2027</span>
+      <span class="pill">4 weeks</span>
+      <span class="pill site sf">ZSFG</span>
+    </div>
+  </header>
+  <p class="note">Intern halves flip mid-block: May 5 → May 6.</p>
+  
+  <div class="roster">
+    <section class="rg pre">
+      <h4>Interns on before you <span>rotated off Apr 21</span></h4>
+      <div class="chips"><span class="chip">Coloma, M</span><span class="chip">Edmiston, T (A)</span><span class="chip">Gropper, R</span><span class="chip">Lee, G</span><span class="chip">Patel, K (A)</span><span class="chip">Psych Intern 2</span><span class="chip">Rusznak, M</span><span class="chip">Saharan, A</span><span class="chip">St.Hilaire, L(A)</span></div>
+    </section>
+    <section class="rg">
+      <h4>Interns with you</h4>
+      <div class="chips"><span class="chip">Abiad, A<em>4/22–5/5</em></span><span class="chip">Howlett, C<em>5/6–5/19</em></span><span class="chip">Lee, M<em>5/6–5/19</em></span><span class="chip">Mundada, M</span><span class="chip">Psych Intern 1</span><span class="chip">Regalado, S</span><span class="chip">Shariff, D</span><span class="chip">Tiu, R</span><span class="chip">Tolby, L</span><span class="chip">Vidyasagar, N</span><span class="chip">Wu, K<em>4/22–5/5</em></span></div>
+    </section>
+    <section class="rg">
+      <h4>Residents with you</h4>
+      <div class="chips"><span class="chip">ChowdharyK<em>5/18–5/19</em></span><span class="chip">DaneshK<em>5/18–5/19</em></span><span class="chip">Domeracki<em>4/22–5/17</em></span><span class="chip">Fraimow-Wong<em>4/22–5/17</em></span><span class="chip">GupteT<em>4/22–5/17</em></span><span class="chip">Korte<em>4/22–5/3</em></span><span class="chip">RahimiA<em>5/18–5/19</em></span><span class="chip">SchroederJ<em>5/4–5/17</em></span><span class="chip">SeeC<em>5/18–5/19</em></span><span class="chip">Wen<em>4/22–5/17</em></span><span class="chip">WillliamsonC<em>5/18–5/19</em></span></div>
+    </section>
+  </div>
+</article>
+<article class="card uc" id="b18">
+  <header>
+    <div class="cno">18</div>
+    <div class="ct">
+      <h3>UCED</h3>
+      <p class="sub">UC · final rotation</p>
+    </div>
+    <div class="cd">
+      <span class="dates">May 20 – Jun 20, 2027</span>
+      <span class="pill">32 days</span>
+      <span class="pill site uc">UC</span>
+    </div>
+  </header>
+  <p class="note">Final scheduled rotation of the year. June 21–28 is blank for the entire intern class in this file.</p>
+  
+  <div class="roster">
+    <section class="rg pre">
+      <h4>Interns on before you <span>rotated off May 19</span></h4>
+      <div class="chips"><span class="chip">Fields, J</span><span class="chip">Flynn, J</span><span class="chip">Hogg, G (N)</span><span class="chip">Krishnamurthy, N</span><span class="chip">Lee, Y</span><span class="chip">Smith, B</span><span class="chip">Yoo, S</span></div>
+    </section>
+    <section class="rg">
+      <h4>Interns with you</h4>
+      <div class="chips"><span class="chip">Roh, M</span><span class="chip">Shirai, N</span><span class="chip">Vidyasagar, N</span><span class="chip">Wu, K</span></div>
+    </section>
+    <section class="rg">
+      <h4>Residents with you</h4>
+      <p class="empty">— none on this rotation code (attending-supervised / intern-only block)</p>
+    </section>
+  </div>
+</article>
+</section>
+
+<section class="cavs">
+  <h2>Fine print</h2>
+  <ul>
+    <li>This schedule was printed <strong>7/3/2026</strong>, in week one of the year. Call and team-level schedules only exist through roughly mid-August, so for later ward/ICU blocks your specific team, seat, and call pattern — and therefore the exact person whose <em>seat</em> you inherit — had not yet been assigned. "On before you" for those blocks is the full intern cohort that rotates off the service the day you start.</li>
+    <li>Night coverage runs under separate rotation codes (e.g., "SF ICU Night," "SFW Night Intern," "SFCC Night Flex"), so night-float trainees aren't included in ward-block rosters except where noted on the SF ICU card.</li>
+    <li>The (A) and (N) tags after some intern names are reproduced exactly as they appear in the source files.</li>
+    <li>The final week of the year, <strong>Jun 21–28, 2027</strong>, is blank for the entire intern class in these exports.</li>
+  </ul>
+  <p class="foot">Verified against 98,243 person-day assignments across both exports · generated Jul 3, 2026</p>
+</section>
+
+</div>
+</body>
+</html>
