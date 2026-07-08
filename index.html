@@ -19,6 +19,7 @@
   --ink2:#374A50; --ink3:#46585E; --mut2:#A9B6B3;
   --offbg:#FCF6E8; --otherbg:#EFF3F1; --vaink:#7A5210;
   --ucx:#2E4C8F; --sfx:#0E7A68; --clx:#9C4A72; --nix:#473C7C;
+  --shadow:0 1px 2px rgba(28,42,46,.05),0 4px 18px rgba(28,42,46,.06);
   --disp:"Bricolage Grotesque",system-ui,sans-serif;
   --body:"Inter","Public Sans",system-ui,-apple-system,sans-serif;
   --mono:"Spline Sans Mono","SF Mono",Menlo,Consolas,monospace;
@@ -31,6 +32,7 @@
   --uc-t:#1F2A45; --sf-t:#173430; --va-t:#3A2F18; --clinic-t:#3A2331; --nights-t:#2B2547;
   --ucx:#8AA8F2; --sfx:#52C2A6; --clx:#D98FB4; --nix:#B49CF0; --vaink:#DBAD5C;
   --vac:#C9993F; --blank:#3A4549; --offbg:#33301F; --otherbg:#242E31;
+  --shadow:0 1px 2px rgba(0,0,0,.45),0 8px 26px rgba(0,0,0,.35);
 }}
 :root[data-theme="dark"]{
   --paper:#14191B; --card:#1B2225; --card2:#1F2729; --hov:#232C2F;
@@ -40,20 +42,33 @@
   --uc-t:#1F2A45; --sf-t:#173430; --va-t:#3A2F18; --clinic-t:#3A2331; --nights-t:#2B2547;
   --ucx:#8AA8F2; --sfx:#52C2A6; --clx:#D98FB4; --nix:#B49CF0; --vaink:#DBAD5C;
   --vac:#C9993F; --blank:#3A4549; --offbg:#33301F; --otherbg:#242E31;
+  --shadow:0 1px 2px rgba(0,0,0,.45),0 8px 26px rgba(0,0,0,.35);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:16px}
+html{scroll-behavior:smooth;scroll-padding-top:68px}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
-body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.6;
-  -webkit-font-smoothing:antialiased;padding:0 20px 90px}
+body{color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;padding:0 20px 90px;
+  background:radial-gradient(1000px 420px at 12% -8%,color-mix(in srgb,var(--uc) 8%,transparent),transparent 65%),
+  radial-gradient(900px 420px at 88% -12%,color-mix(in srgb,var(--clinic) 7%,transparent),transparent 65%),var(--paper)}
+body::before{content:"";position:fixed;top:0;left:0;right:0;height:4px;z-index:90;
+  background:linear-gradient(90deg,var(--uc),var(--sf),var(--va),var(--clinic),var(--nights))}
 .wrap{max-width:1000px;margin:0 auto}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--uc);outline-offset:2px;border-radius:4px}
 
 /* ---------- header ---------- */
-.hdr{padding:56px 0 8px;position:relative}
-.tbtn{position:absolute;top:58px;right:0;width:36px;height:36px;background:var(--card);border:1px solid var(--line);border-radius:99px;cursor:pointer;font-size:15px;color:var(--mut);line-height:1;display:flex;align-items:center;justify-content:center}
+.hdr{padding:40px 0 8px}
+.topnav{position:sticky;top:4px;z-index:80;display:flex;align-items:center;gap:20px;padding:10px 14px;margin:8px -14px 0;
+  background:color-mix(in srgb,var(--paper) 78%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border:1px solid color-mix(in srgb,var(--line) 60%,transparent);border-radius:12px}
+.nbrand{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+.topnav a{font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;text-decoration:none;color:var(--mut);padding:4px 2px;border-bottom:2px solid transparent}
+.topnav a:hover{color:var(--ink);border-bottom-color:var(--vac)}
+.tbtn{margin-left:auto;width:32px;height:32px;background:var(--card);border:1px solid var(--line);border-radius:99px;cursor:pointer;
+  font-size:14px;color:var(--mut);line-height:1;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow)}
 .tbtn:hover{color:var(--ink)}
+@media (max-width:700px){.nbrand{display:none}}
 .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
 h1{font-family:var(--disp);font-weight:800;font-size:clamp(34px,6vw,58px);line-height:1.02;letter-spacing:-.015em;margin:10px 0 6px}
 h1 .yr{color:var(--mut);font-weight:600}
@@ -62,13 +77,13 @@ h1 .yr{color:var(--mut);font-weight:600}
 
 /* key facts */
 .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:10px;margin:26px 0 8px}
-.fact{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:14px}
+.fact{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px 15px;font-size:14px;box-shadow:var(--shadow)}
 .fact b{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);margin-bottom:5px;font-weight:600}
 
 /* ---------- timeline ---------- */
-.tl{margin:34px 0 6px}
+.tl{margin:48px 0 6px}
 .tlh{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:6px}
-h2{font-family:var(--disp);font-weight:800;font-size:24px;letter-spacing:-.01em}
+h2{font-family:var(--disp);font-weight:800;font-size:27px;letter-spacing:-.012em}
 .legend{display:flex;flex-wrap:wrap;gap:12px;font-size:12.5px;color:var(--mut)}
 .legend span{display:inline-flex;align-items:center;gap:6px}
 .dot{width:10px;height:10px;border-radius:3px;display:inline-block}
@@ -76,7 +91,7 @@ h2{font-family:var(--disp);font-weight:800;font-size:24px;letter-spacing:-.01em}
 .dot.clinic{background:var(--clinic)}.dot.nights{background:var(--nights)}
 .dot.vacd{background:repeating-linear-gradient(-45deg,var(--vac) 0 3px,#fff 3px 6px);border:1px solid var(--vac)}
 .tcap{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin:16px 0 6px}
-.strip{position:relative;display:flex;height:54px;border-radius:10px;overflow:hidden;border:1px solid var(--line);background:var(--card)}
+.strip{position:relative;display:flex;height:58px;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--card);box-shadow:var(--shadow)}
 .seg{position:relative;display:flex;flex-direction:column;justify-content:center;padding:0 7px;color:#fff;text-decoration:none;
   border-right:2px solid var(--paper);overflow:hidden;min-width:0;transition:filter .15s}
 .seg:last-of-type{border-right:0}
@@ -98,7 +113,7 @@ h2{font-family:var(--disp);font-weight:800;font-size:24px;letter-spacing:-.01em}
 .index{list-style:none;margin:30px 0 8px;display:grid;grid-template-columns:1fr 1fr;gap:4px 26px}
 .index a{display:grid;grid-template-columns:26px 12px 1fr auto auto;gap:8px;align-items:center;
   text-decoration:none;padding:7px 8px;border-radius:8px;font-size:13.5px}
-.index a:hover{background:var(--card)}
+.index a:hover{background:var(--card);box-shadow:var(--shadow)}
 .index .no{font-family:var(--mono);font-size:11.5px;color:var(--mut)}
 .index .nm{font-weight:600}
 .index .dt{font-family:var(--mono);font-size:12px;color:var(--mut);white-space:nowrap}
@@ -106,15 +121,21 @@ h2{font-family:var(--disp);font-weight:800;font-size:24px;letter-spacing:-.01em}
 @media (max-width:760px){.index{grid-template-columns:1fr}.index .du{display:none}}
 
 /* ---------- cards ---------- */
-.blocks h2{margin:44px 0 4px}
+.blocks h2{margin:60px 0 6px}
 .bsub{color:var(--mut);font-size:14px;margin-bottom:18px;max-width:78ch}
 .card{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--line);
-  border-radius:14px;padding:20px 22px 18px;margin:0 0 18px;scroll-margin-top:14px}
+  border-radius:16px;padding:22px 24px 20px;margin:0 0 22px;scroll-margin-top:64px;box-shadow:var(--shadow)}
 .card.uc{border-left-color:var(--uc)}.card.sf{border-left-color:var(--sf)}
 .card.va{border-left-color:var(--va)}.card.clinic{border-left-color:var(--clinic)}
 .card.nights{border-left-color:var(--nights)}
 .card header{display:grid;grid-template-columns:auto 1fr auto;gap:6px 16px;align-items:start}
-.cno{font-family:var(--mono);font-size:13px;color:var(--mut);padding-top:7px}
+.cno{font-family:var(--mono);font-size:13px;font-weight:600;width:38px;height:38px;border-radius:11px;
+  display:flex;align-items:center;justify-content:center;background:var(--otherbg);color:var(--mut);margin-top:2px}
+.card.uc .cno{background:var(--uc-t);color:var(--ucx)}
+.card.sf .cno{background:var(--sf-t);color:var(--sfx)}
+.card.va .cno{background:var(--va-t);color:var(--vaink)}
+.card.clinic .cno{background:var(--clinic-t);color:var(--clx)}
+.card.nights .cno{background:var(--nights-t);color:var(--nix)}
 .ct h3{font-family:var(--disp);font-weight:800;font-size:23px;letter-spacing:-.01em;line-height:1.1}
 .sub{color:var(--mut);font-size:13px;margin-top:2px}
 .cd{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
@@ -187,7 +208,7 @@ details.guide summary .gsrc{margin-left:auto;font-weight:400;letter-spacing:.04e
 .gbody .mono{font-family:var(--mono);font-size:12.5px}
 
 /* live schedule */
-details.live{margin:18px 0 0;border:1px solid var(--line);border-radius:14px;background:var(--card);overflow:hidden}
+details.live{margin:22px 0 0;border:1px solid var(--line);border-radius:16px;background:var(--card);overflow:hidden;box-shadow:var(--shadow)}
 details.live summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:14px 18px;user-select:none}
 details.live summary::-webkit-details-marker{display:none}
 details.live summary:hover{background:var(--card2)}
@@ -240,8 +261,15 @@ details.live summary .lsrc a:hover{border-bottom-style:solid}
 <body>
 <div class="wrap">
 
-<header class="hdr">
+<nav class="topnav">
+  <span class="nbrand">MW · Intern Year ’26–27</span>
+  <a href="#live">Live</a>
+  <a href="#tl">Year</a>
+  <a href="#blocks">Blocks</a>
   <button id="thm" class="tbtn" aria-label="Toggle dark mode" title="Toggle dark mode">☾</button>
+</nav>
+
+<header class="hdr">
   <p class="eyebrow">UCSF Internal Medicine · Intern year</p>
   <h1>Max Weiss <span class="yr">2026–27</span></h1>
   <p class="srcline">Built from the program's <b>Calendar&nbsp;By&nbsp;Staff</b> and <b>Grid&nbsp;By&nbsp;Staff</b> exports (both printed 7/3/2026; the two agree on every assignment). You appear as <b>Weiss,&nbsp;M</b> — <b>WeissS</b> in these files is a different person, a senior resident.</p>
@@ -260,7 +288,7 @@ details.live summary .lsrc a:hover{border-bottom-style:solid}
 </header>
 
 
-<section class="tl" aria-label="Year timeline">
+<section class="tl" id="tl" aria-label="Year timeline">
   <div class="tlh"><h2>The year at a glance</h2><div class="legend">
     <span><i class="dot uc"></i>UC / Parnassus</span><span><i class="dot sf"></i>ZSFG</span><span><i class="dot va"></i>VA</span><span><i class="dot clinic"></i>Clinic</span><span><i class="dot nights"></i>Nights</span><span><i class="dot vacd"></i>Vacation</span>
   </div></div>
@@ -273,7 +301,7 @@ details.live summary .lsrc a:hover{border-bottom-style:solid}
 
 <ol class="index"><li><a href="#b1"><span class="no">01</span><span class="dot clinic"></span><span class="nm">ClinicZ1600</span><span class="dt">Jun 29 – Jul 15, 2026</span><span class="du">17 days</span></a></li><li><a href="#b2"><span class="no">02</span><span class="dot uc"></span><span class="nm">UC MICU</span><span class="dt">Jul 16 – 29, 2026</span><span class="du">2 weeks</span></a></li><li><a href="#b3"><span class="no">03</span><span class="dot sf"></span><span class="nm">SF ICU</span><span class="dt">Jul 30 – Aug 12, 2026</span><span class="du">2 weeks</span></a></li><li><a href="#b4"><span class="no">04</span><span class="dot va"></span><span class="nm">VAPQJ</span><span class="dt">Aug 13 – Sep 9, 2026</span><span class="du">4 weeks</span></a></li><li><a href="#b5"><span class="no">05</span><span class="dot uc"></span><span class="nm">UCW</span><span class="dt">Sep 10 – 23, 2026</span><span class="du">2 weeks</span></a></li><li><a href="#b6"><span class="no">06</span><span class="dot uc"></span><span class="nm">UC GI</span><span class="dt">Sep 24 – Oct 7, 2026</span><span class="du">2 weeks</span></a></li><li><a href="#b7"><span class="no">07</span><span class="dot uc"></span><span class="nm">UC Cards</span><span class="dt">Oct 8 – Nov 4, 2026</span><span class="du">4 weeks</span></a></li><li><a href="#b8"><span class="no">08</span><span class="dot va"></span><span class="nm">VAW</span><span class="dt">Nov 5 – 18, 2026</span><span class="du">2 weeks</span></a></li><li><a href="#b9"><span class="no">09</span><span class="dot va"></span><span class="nm">VAAC</span><span class="dt">Nov 19 – Dec 2, 2026</span><span class="du">2 weeks</span></a></li><li><a href="#b10"><span class="no">10</span><span class="dot uc"></span><span class="nm">UC LTU</span><span class="dt">Dec 3 – 30, 2026</span><span class="du">4 weeks</span></a></li><li><a href="#b11"><span class="no">11</span><span class="dot uc"></span><span class="nm">UCW</span><span class="dt">Dec 31, 2026 – Jan 27, 2027</span><span class="du">4 weeks</span></a></li><li><a href="#b12"><span class="no">12</span><span class="dot sf"></span><span class="nm">SFW</span><span class="dt">Jan 28 – Feb 10, 2027</span><span class="du">2 weeks</span></a></li><li><a href="#b13"><span class="no">13</span><span class="dot va"></span><span class="nm">VAAC</span><span class="dt">Feb 11 – 24, 2027</span><span class="du">2 weeks</span></a></li><li><a href="#b14"><span class="no">14</span><span class="dot sf"></span><span class="nm">SF Card</span><span class="dt">Feb 25 – Mar 24, 2027</span><span class="du">4 weeks</span></a></li><li><a href="#b15"><span class="no">15</span><span class="dot va"></span><span class="nm">VAW</span><span class="dt">Mar 25 – Apr 7, 2027</span><span class="du">2 weeks</span></a></li><li><a href="#b16"><span class="no">16</span><span class="dot nights"></span><span class="nm">Flex Night Intern</span><span class="dt">Apr 8 – 21, 2027</span><span class="du">2 weeks</span></a></li><li><a href="#b17"><span class="no">17</span><span class="dot sf"></span><span class="nm">SFW</span><span class="dt">Apr 22 – May 19, 2027</span><span class="du">4 weeks</span></a></li><li><a href="#b18"><span class="no">18</span><span class="dot uc"></span><span class="nm">UCED</span><span class="dt">May 20 – Jun 20, 2027</span><span class="du">32 days</span></a></li></ol>
 
-<section class="blocks">
+<section class="blocks" id="blocks">
   <h2>Block by block</h2>
   <p class="bsub">Each card shows the interns who rotated off the day you start ("on before you"), then everyone scheduled on the same rotation code during your dates. A small date range on a name means partial overlap — residents flip on an offset cycle, so some overlap only a day or two at the edges.</p>
   
