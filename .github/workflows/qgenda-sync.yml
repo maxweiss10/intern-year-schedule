@@ -2,7 +2,7 @@ name: Sync QGenda feed
 
 on:
   schedule:
-    - cron: "17 * * * *"   # hourly
+    - cron: "3,18,33,48 * * * *"   # every 15 min (offset from top of hour)
   workflow_dispatch:
 
 permissions:

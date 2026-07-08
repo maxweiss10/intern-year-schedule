@@ -69,11 +69,11 @@ for ln in lines:
                 t = t[4:]
             ev["t"] = t
 
+# No timestamp in the output: the file only changes (and only gets committed)
+# when the schedule itself changes; the page reads sync freshness from the
+# public GitHub Actions API instead.
 events.sort(key=lambda e: (e["d"], 0 if e.get("r") else 1, e.get("s") or ""))
-out = {
-    "updated": datetime.now(TZ).strftime("%Y-%m-%d %H:%M %Z"),
-    "events": events,
-}
+out = {"events": events}
 with open(OUT, "w", encoding="utf-8") as f:
     json.dump(out, f, separators=(",", ":"), ensure_ascii=False)
 print(f"wrote {len(events)} events, {events[0]['d']} .. {events[-1]['d']}")
