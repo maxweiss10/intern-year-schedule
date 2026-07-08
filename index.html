@@ -140,6 +140,26 @@ h2{font-family:var(--disp);font-weight:800;font-size:24px;letter-spacing:-.01em}
 .slot.me em{color:#C7D2D6}
 .slot.gap{border-style:dashed;background:#fff;color:var(--mut);font-weight:400}
 
+/* rotation guide dropdown */
+details.guide{margin:14px 0 4px;border:1px solid var(--line);border-radius:11px;background:#FBFDFC;overflow:hidden}
+details.guide summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:9px;
+  padding:11px 15px;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--mut);user-select:none}
+details.guide summary::-webkit-details-marker{display:none}
+details.guide summary:hover{background:#F3F7F5}
+details.guide summary .chev{display:inline-block;transition:transform .15s;font-size:12px;line-height:1}
+details.guide[open] summary .chev{transform:rotate(90deg)}
+details.guide summary .gsrc{margin-left:auto;font-weight:400;letter-spacing:.04em;text-transform:none;opacity:.75}
+.gbody{padding:2px 16px 14px;border-top:1px dashed var(--line)}
+.gbody h5{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--mut);margin:13px 0 5px}
+.gbody p,.gbody li{font-size:13.5px;color:#374a50;line-height:1.5}
+.gbody p{margin:0 0 4px}
+.gbody ul{margin:0 0 2px 17px;padding:0}
+.gbody li{margin-bottom:4px}
+.gbody b,.gbody strong{color:var(--ink)}
+.gbody .mono{font-family:var(--mono);font-size:12.5px}
+
 /* caveats */
 .cavs{margin-top:40px;border-top:2px solid var(--ink);padding-top:16px}
 .cavs h2{font-size:19px}
@@ -240,6 +260,39 @@ h2{font-family:var(--disp);font-weight:800;font-size:24px;letter-spacing:-.01em}
   <div class="hand"><span class="who out">Tran, Q</span><span class="arr">→</span><span class="who">Pulsifer, B</span><span class="role">Day intern</span></div>
   <div class="hand"><span class="who you">You</span><span class="arr">⇄</span><span class="who">Pulsifer, B</span><span class="role">Mid-block swap: you move to days Jul 23, Pulsifer to nights (clinic day for you Jul 27)</span></div>
 </div>
+  <details class="guide">
+  <summary><span class="chev">▸</span>Rotation guide<span class="gsrc">Ultimate Guide &#183; Parnassus</span></summary>
+  <div class="gbody">
+    <h5>The gist</h5>
+    <p>Parnassus MICU runs two teams — resident-staffed <b>Blue</b> and APP-staffed <b>Gold</b>. Days: 3–4 residents + 1 medicine intern + CCM fellow + attending. Nights: 1 resident ± 1 intern. Directors: Kathleen Liu (MICU), Wendy Smith (rotation).</p>
+    <h5>Your night week</h5>
+    <ul>
+      <li>Shift 5pm–6:30am — arrive ~5pm for sign-out; night rounds start 9:30pm.</li>
+      <li>Admit all new MICU Blue patients until 6am, split 1:1 with the night resident; build the morning distribution on the board; sign out at 6am.</li>
+    </ul>
+    <h5>Your day week</h5>
+    <ul>
+      <li>Day team takes sign-in from the night resident by <b>6am</b>. Holdover presentations are brief sign-outs — full plan gets discussed on rounds.</li>
+      <li>Resident long shift 6am–7pm holds the admitting pager until 5pm; short shift 6am–5pm.</li>
+      <li>Sign out before 5pm to the long-call resident; after 5pm to the night resident. Always check with the fellow before leaving.</li>
+    </ul>
+    <h5>Tips</h5>
+    <ul>
+      <li>The MICU fellow is notified of <b>every</b> admission; the attending is in-house and always on Voalte.</li>
+      <li>ICU transfers: the ICU team is primary immediately, even before the patient arrives — bedside sign-out within 30 min of the MOD page.</li>
+      <li>Notes: ICU writes the H&amp;P on transfer in; on transfer out, ICU writes the progress/transfer note and the floor writes the H&amp;P. Call room in 9ICU is reserved for the MICU resident.</li>
+    </ul>
+    <h5>Parnassus site basics</h5>
+    <ul>
+      <li><b>Admin:</b> Eva Gamboa (M1480, Eva.Gamboa@ucsf.edu) for parking, FastPay, ID badges. Site director: Brad Monash (M1495).</li>
+      <li><b>Schedules:</b> QGenda (yours) &#183; Amion, login “ucsf hosp” (attendings) &#183; Box &#8594; Parnassus Resources (team day-to-day). Log duty hours weekly in MedHub — locks after 2 weeks.</li>
+      <li><b>Conferences:</b> M989, both daily conferences expected.</li>
+      <li><b>Call rooms (6pm–9am):</b> M801B, L1281, L1286, L1511 (codes in the guide).</li>
+      <li><b>Meds to Beds pharmacy:</b> 500 Parnassus, J level, MU145 — open 7 days.</li>
+      <li><b>Earliest sign-out, non-call days:</b> 3pm weekdays / 2pm weekends. Full guide: bit.ly/ParnassusUG.</li>
+    </ul>
+  </div>
+</details>
   <div class="roster">
     <section class="rg pre">
       <h4>Interns on before you <span>rotated off Jul 15</span></h4>
@@ -281,6 +334,39 @@ h2{font-family:var(--disp);font-weight:800;font-size:24px;letter-spacing:-.01em}
   </table>
   <p class="pnote">Day residents Jul 30 – Aug 10: WileR (Res 1) · ChenSai (Res 2) · Wen (Res 3) · HaddadS (Res 4); they flip Aug 11 to ChennakesavaluM, DaneshK, LuffM, ZhaoH. Overnight resident (separate "SF ICU Night" code): EscobedoV Jul 30 – Aug 10, then PanC Aug 11–12.</p>
 </div>
+  <details class="guide">
+  <summary><span class="chev">▸</span>Rotation guide<span class="gsrc">Ultimate Guide &#183; SFGH</span></summary>
+  <div class="gbody">
+    <h5>The gist</h5>
+    <p>ZSFG medical ICU: 4 residents + 4 interns (one FM); resident call is q4 × 28h. You pre-round early — the machine starts at 6am.</p>
+    <h5>Day 1</h5>
+    <ul>
+      <li>Interns arrive <b>6:30am</b> to pre-round; the night resident’s holdover email with patient assignments lands at 6am.</li>
+      <li>Call rooms: MICU long call H3028, night float H3029 (badge access).</li>
+    </ul>
+    <h5>Typical day</h5>
+    <ul>
+      <li>6am holdover email &#8594; 6:30 interns &#8594; 7:00 residents &#8594; <b>8:15 code huddle (H32)</b> &#8594; 8:30 rounds &#8594; 12 noon conference &#8594; 5pm non-long-call teams sign out to the long-call intern &#8594; 8pm sign-out to the night resident (“Manta Ray”) &#8594; 9:15pm code huddle.</li>
+      <li>Caps: team 8, admitting 5; long-call resident is code leader until Manta Ray arrives at 8pm.</li>
+    </ul>
+    <h5>Tips</h5>
+    <ul>
+      <li>Confirm every admission with the charge RN (x60529) and use the <b>Critical Care Orderset</b>.</li>
+      <li>ICU triage note for every consult; staff with the fellow (x69412) or attending within 90 min.</li>
+      <li>Transfers to wards: warm bedside handoff with your senior — only to holdover or long-call teams, never to swing/overnight. Transfer summary + discontinue ICU-only orders.</li>
+      <li>Codes get a significant-event note (“.codeblue” dot phrase); consent notes go in the physical chart; death note = discharge summary within 24h.</li>
+    </ul>
+    <h5>Contacts</h5>
+    <p class="mono">ICU MOD 443-2625 &#183; intern pagers 443-6708 / 6723 / 6727 / 6730 &#183; charge RN x60529 &#183; fellow x69412 &#183; director Carolyn Hendrickson (carolyn.hendrickson@ucsf.edu)</p>
+    <h5>ZSFG site basics</h5>
+    <ul>
+      <li><b>Getting there:</b> UC shuttle from 16th St BART (Yellow), Parnassus (Blue), Mission Bay (Gold); SFGH shuttle to 24th St + Civic Center BART. Parking: housestaff pass $190/mo (23rd St kiosk); on-call CAIR cards from Housestaff Coordinator, Bldg 10 3rd fl. Safety escort 24/7: 628-206-8063.</li>
+      <li><b>Access:</b> Epic login = DPH credentials. Scrubs: badge machines Bldg 5 (GK2E) and Bldg 25 (HG912). IT x67378.</li>
+      <li><b>Food:</b> meal card $37/day, cafeteria 6:30am–7pm; weekday lunch Bldg 10 Rm 1219; snacks outside chiefs’ office and in resident lounge GL18.</li>
+      <li><b>Conferences:</b> noon conference 12–1 Bldg 10 2nd fl; Intern Report Mon 1–2pm. Chiefs’ inpatient office x61843.</li>
+    </ul>
+  </div>
+</details>
   <div class="roster">
     <section class="rg pre">
       <h4>Interns on before you <span>rotated off Jul 29</span></h4>
@@ -311,6 +397,25 @@ h2{font-family:var(--disp);font-weight:800;font-size:24px;letter-spacing:-.01em}
   </header>
   <p class="note">Vacation Sep 2–9 falls at the end of this block.</p>
   
+  <details class="guide">
+  <summary><span class="chev">▸</span>Rotation guide<span class="gsrc">Ultimate Guide &#183; VA</span></summary>
+  <div class="gbody">
+    <h5>Heads up</h5>
+    <p>Neither the VA guide nor the block manual describes the <b>VAPQJ</b> code — the VA guide is inpatient-focused. What carries over for an ambulatory block:</p>
+    <ul>
+      <li><b>Ambulatory Report:</b> Wed 8–9am in 1A-62. Ambulatory chief: Kenneth Hubbel.</li>
+      <li><b>Clinic onboarding:</b> ADPAC Liliane Renous (liliane.renous@va.gov) sets up trainees for VA primary-care clinics.</li>
+      <li><b>PACT teams:</b> find a patient’s PACT via the CPRS banner; message them on Teams for post-visit follow-ups.</li>
+    </ul>
+    <h5>VA site basics</h5>
+    <ul>
+      <li><b>Getting there:</b> VA–UCSF shuttle (schedule in UCSF mobile app); Transmetro shuttles from Embarcadero BART, Daly City BART, Salesforce Transit Center (PIV needed). Parking permit $12.50/mo at Agent Cashier, Bldg 2 Rm 63 (9–4 M–F).</li>
+      <li><b>Onboarding:</b> ADPAC Sharon Clayton (sharon.clayton1@va.gov) for PIV / computer / meal card. PIV office Bldg 4 Rm 2A-103 (go 7:30am or noon). IT helpdesk x24949 (24/7). In CPRS, set your 6-character e-signature code early.</li>
+      <li><b>Food:</b> free conference lunch weekdays at noon (sign in); free meals from diet office, Bldg 203 BB2 (b’fast 7:45–9:45, lunch 12:30–1:45, dinner 5:30–6:15).</li>
+      <li><b>Rooms:</b> resident room 1A-29; scrubs BB-130B (1/day); conferences in 1A-62 (virtual: bit.ly/UCSF-noon).</li>
+    </ul>
+  </div>
+</details>
   <div class="roster">
     <section class="rg pre">
       <h4>Interns on before you <span>rotated off Aug 12</span></h4>
@@ -341,6 +446,43 @@ h2{font-family:var(--disp);font-weight:800;font-size:24px;letter-spacing:-.01em}
   </header>
   
   
+  <details class="guide">
+  <summary><span class="chev">▸</span>Rotation guide<span class="gsrc">Ultimate Guide &#183; Parnassus</span></summary>
+  <div class="gbody">
+    <h5>The gist</h5>
+    <p>Moffitt-Long general medicine: 8 teams (A–H), each 1 resident + 2 interns; team cap 16. You are the primary physician — pre-round on every patient daily, represent the team at MDR, keep the handoff current. Service directors: Adeena Khan, Molly Kantor.</p>
+    <h5>Day 1</h5>
+    <ul>
+      <li>Sign-in from the night team (“Wombat”) <b>before 7am</b>; whole team present at 7am on call days.</li>
+      <li>Team rooms: A/C M1486 &#183; B M980 &#183; D/H M1556 &#183; E M1493 &#183; F M983 &#183; G M987 (door codes in the guide).</li>
+    </ul>
+    <h5>Typical day</h5>
+    <ul>
+      <li>Interns start 6:30am. Long call 6:30am–9pm &#183; post / post-post until 5pm &#183; pre-call until 4pm.</li>
+      <li>Both daily conferences in M989 are expected.</li>
+    </ul>
+    <h5>Call cycle (q4)</h5>
+    <ul>
+      <li><b>Long:</b> holdovers + admissions 7am–6pm — max 7 patients (6 fresh), decay cap 2 after 5pm; 7–9pm whole-team sign-out to Wombat.</li>
+      <li><b>Post:</b> nothing new &#183; <b>Post-post:</b> up to 2–3 holdovers (intern may be off/clinic/IHD) &#183; <b>Pre:</b> no admits, resident or intern may be off.</li>
+      <li>Bounce-backs (&lt;7 days) return to the original team any day; formal sign-out 8:30–9am.</li>
+    </ul>
+    <h5>Tips</h5>
+    <ul>
+      <li>Call the ED back within 15 min of the MOD page, eyes on the patient within 30 min, orders (<b>Medicine Rapid Bed Request</b> + <b>Core IP Adult Admission</b>) within the hour — goal is 60 min page-to-admission.</li>
+      <li>Re-triage questions go through your attending first (doesn’t count toward cap; email the CRs). Holdover algorithm lives on the DHM wiki.</li>
+    </ul>
+    <h5>Parnassus site basics</h5>
+    <ul>
+      <li><b>Admin:</b> Eva Gamboa (M1480, Eva.Gamboa@ucsf.edu) for parking, FastPay, ID badges. Site director: Brad Monash (M1495).</li>
+      <li><b>Schedules:</b> QGenda (yours) &#183; Amion, login “ucsf hosp” (attendings) &#183; Box &#8594; Parnassus Resources (team day-to-day). Log duty hours weekly in MedHub — locks after 2 weeks.</li>
+      <li><b>Conferences:</b> M989, both daily conferences expected.</li>
+      <li><b>Call rooms (6pm–9am):</b> M801B, L1281, L1286, L1511 (codes in the guide).</li>
+      <li><b>Meds to Beds pharmacy:</b> 500 Parnassus, J level, MU145 — open 7 days.</li>
+      <li><b>Earliest sign-out, non-call days:</b> 3pm weekdays / 2pm weekends. Full guide: bit.ly/ParnassusUG.</li>
+    </ul>
+  </div>
+</details>
   <div class="roster">
     <section class="rg pre">
       <h4>Interns on before you <span>rotated off Sep 9</span></h4>
@@ -383,6 +525,29 @@ h2{font-family:var(--disp);font-weight:800;font-size:24px;letter-spacing:-.01em}
   </div>
   <p class="pnote">UC GI alternates between interns and residents, one at a time. The person immediately before you is TranT, a resident — no intern directly precedes you.</p>
 </div>
+  <details class="guide">
+  <summary><span class="chev">▸</span>Rotation guide<span class="gsrc">Block Manual 25–26</span></summary>
+  <div class="gbody">
+    <h5>The gist</h5>
+    <p>Inpatient GI consult service at Moffitt, working directly with the GI fellows, plus endoscopy exposure (EGD, colonoscopy, optionally ERCP/EUS). One trainee at a time — hence your solo slot.</p>
+    <h5>Schedule</h5>
+    <ul>
+      <li>Mon/Tue/Thu/Fri AM: consults + outpatient procedures &#183; Wed AM: GI Grand Rounds + fellows’ didactics &#183; every PM: consults + inpatient procedures.</li>
+      <li><b>No call, no weekends, no holidays.</b></li>
+    </ul>
+    <h5>Day 1</h5>
+    <ul>
+      <li>Pre-rotation reading and service info: <a href="https://ucsf.app.box.com/s/bbckr21zuyy5uh13aifctbhlmhj0jtyu/file/649829882414">Box folder</a>.</li>
+    </ul>
+    <h5>Expectations</h5>
+    <ul>
+      <li>See consults, present each case to the fellow and attending on call; write concise consult-focused H&amp;Ps.</li>
+      <li>Core topics: GI bleeding, iron-deficiency anemia, N/V, diarrhea, IBD, constipation, ileus, abnormal GI imaging; indications/contraindications for common GI procedures.</li>
+    </ul>
+    <h5>Contacts</h5>
+    <p class="mono">Attending: Max Brondfield (max.brondfield@ucsf.edu) &#183; Admin: Svetlana Sogolova (svetlana.sogolova@ucsf.edu)</p>
+  </div>
+</details>
   <div class="roster">
     <section class="rg pre">
       <h4>Interns on before you <span>rotated off Sep 23</span></h4>
@@ -413,6 +578,38 @@ h2{font-family:var(--disp);font-weight:800;font-size:24px;letter-spacing:-.01em}
   </header>
   
   
+  <details class="guide">
+  <summary><span class="chev">▸</span>Rotation guide<span class="gsrc">Ultimate Guide &#183; Parnassus</span></summary>
+  <div class="gbody">
+    <h5>The gist</h5>
+    <p>5 UC cardiology teams: <b>A and B are resident teamlets</b> (1 resident + 1 intern each); C/D/E are APP teams, F is the cards hospitalist. The admitting pager is always held by the attending. Leadership: Atif Qasim, Chris Barnett.</p>
+    <h5>Day 1</h5>
+    <ul>
+      <li>Workroom: M1015 conference room (clear out for MDR 2–3pm; 10-Long RN station is backup).</li>
+      <li>Sign in from the overnight hospitalist (“Crane”) by 7am.</li>
+      <li>Comms run on Microsoft Teams: “Cardiology Floor” (discharge planning — respond by 9am) and “CICU” (clinical).</li>
+    </ul>
+    <h5>Typical day</h5>
+    <ul>
+      <li>Teaching every weekday 8:30am in M1179.</li>
+      <li>Sign-out: to “Raven” (swing, 2–8pm) before 8pm, to Crane after; earliest recommended 3pm.</li>
+    </ul>
+    <h5>Call cycle</h5>
+    <ul>
+      <li><b>Long:</b> admit 7am–7pm, team cap 10 (6 new), decay cap 2 after 5pm; interns 6:30am–9pm.</li>
+      <li><b>Post:</b> no admits (to 5pm) &#183; <b>Short:</b> up to 4 holdovers incl. bounce-backs (to 5pm) &#183; <b>Pre:</b> to 4pm.</li>
+      <li>Crane takes all overnight admissions and cross-cover; “I-CON” med-consult attending (7am–7pm) for complex non-cardiac issues. Bounce-back = readmit or CICU transfer-out &lt;7 days, returns to you.</li>
+    </ul>
+    <h5>Tips</h5>
+    <ul>
+      <li>Change first-call for holdovers right after sign-out.</li>
+      <li>Place “discharge referral to cardiology” orders ≥ 48h before discharge — one order per referral (EP + gen cards = 2); appointments then auto-appear on the AVS. Escalate discharge barriers to Chris Barnett.</li>
+      <li><a href="https://ucsf.box.com/s/tjiclf8bcwqquj4rtomk46ml0p85rrsl">Tips &amp; tricks doc</a>.</li>
+    </ul>
+    <h5>Contacts</h5>
+    <p class="mono">CICU admitting pager 443-9197 &#183; CICU attending 415-353-CICU (2428)</p>
+  </div>
+</details>
   <div class="roster">
     <section class="rg pre">
       <h4>Interns on before you <span>rotated off Oct 7</span></h4>
@@ -443,6 +640,45 @@ h2{font-family:var(--disp);font-weight:800;font-size:24px;letter-spacing:-.01em}
   </header>
   
   
+  <details class="guide">
+  <summary><span class="chev">▸</span>Rotation guide<span class="gsrc">Ultimate Guide &#183; VA</span></summary>
+  <div class="gbody">
+    <h5>The gist</h5>
+    <p>SFVA inpatient medicine: 5 teams (1 resident + 2 interns), caps 16/team and 8/intern, with the Flow Hospitalist Service (FHS) as admission/logistics backup.</p>
+    <h5>Day 1</h5>
+    <ul>
+      <li>Arrive 6:45–7:10am; take sign-out from the night intern (“FIREFLY”) by 7:10.</li>
+      <li>Team rooms: T1 1A-63 &#183; T2 1A-94 &#183; T3 1A-13B/C &#183; T4 1A-68 &#183; T5 1A-65 (door codes in the guide).</li>
+      <li>Schedule + days off live in the <b>VA Box schedule, not QGenda</b>. Sign-out doc: bit.ly/vaw-signout (open in Edge, logged into VA email).</li>
+    </ul>
+    <h5>Typical day</h5>
+    <ul>
+      <li>7:15 holdover sign-outs &#8594; 8am code huddle outside 1A-62 &#8594; 8–8:50 morning report &#8594; 9–12 bedside rounds + MDR (Teams, bit.ly/VAW-MDR; slots 10:30–11:45) &#8594; 12–1 noon conference &#8594; afternoon tasks.</li>
+    </ul>
+    <h5>Call cycle</h5>
+    <ul>
+      <li><b>Long:</b> 7am–9pm, admit cap 7 (decay 1 after 5pm); MOD phone forwards to your senior at noon; sign out to FIREFLY from 8pm, out before 9.</li>
+      <li>Then <b>Post</b> &#8594; <b>Tiny</b> (no new) &#8594; <b>Short</b> &#8594; <b>Pre</b> (7am–4pm, resident–intern day).</li>
+      <li>Non-call days: sign out to “DRAGONFLY” at 3pm (2pm weekends) once the checklist is done. Re-admits &lt;7 days come back to the discharging team.</li>
+    </ul>
+    <h5>Tips</h5>
+    <ul>
+      <li><b>CPRS has no push alerts</b> — call the RN for any urgent order (antibiotics, anticoagulation, AEDs). Vocera x27901.</li>
+      <li>Labs are drawn 0600/1300/2000 as “Lab Collect”; anything else is Ward Collect + call the RN (add-ons x22260).</li>
+      <li>Procedures always need a fellow/attending in the room — page FHS to supervise paras/LPs (pulm does thoras); order kits via RN text order &gt;30 min ahead.</li>
+      <li>LST note within 72h of admission, and DNR needs an <b>order</b>, not just the note. Direct admits/transfers &#8594; page FHS. End notes with “I have discussed the case with my attending, Dr. ___…”.</li>
+    </ul>
+    <h5>Contacts</h5>
+    <p class="mono">FHS 415-376-2034 (M–F 8–5, in-house 24/7) &#183; MOD 443-7099 &#183; FIREFLY/DRAGONFLY 443-7328 &#183; ICU triage x27319 &#183; RRT: dial 2222 &#183; site director susie.wlodarczyk@ucsf.edu</p>
+    <h5>VA site basics</h5>
+    <ul>
+      <li><b>Getting there:</b> VA–UCSF shuttle (schedule in UCSF mobile app); Transmetro shuttles from Embarcadero BART, Daly City BART, Salesforce Transit Center (PIV needed). Parking permit $12.50/mo at Agent Cashier, Bldg 2 Rm 63 (9–4 M–F).</li>
+      <li><b>Onboarding:</b> ADPAC Sharon Clayton (sharon.clayton1@va.gov) for PIV / computer / meal card. PIV office Bldg 4 Rm 2A-103 (go 7:30am or noon). IT helpdesk x24949 (24/7). In CPRS, set your 6-character e-signature code early.</li>
+      <li><b>Food:</b> free conference lunch weekdays at noon (sign in); free meals from diet office, Bldg 203 BB2 (b’fast 7:45–9:45, lunch 12:30–1:45, dinner 5:30–6:15).</li>
+      <li><b>Rooms:</b> resident room 1A-29; scrubs BB-130B (1/day); conferences in 1A-62 (virtual: bit.ly/UCSF-noon).</li>
+    </ul>
+  </div>
+</details>
   <div class="roster">
     <section class="rg pre">
       <h4>Interns on before you <span>rotated off Nov 4</span></h4>
@@ -473,6 +709,19 @@ h2{font-family:var(--disp);font-weight:800;font-size:24px;letter-spacing:-.01em}
   </header>
   <p class="note">Vacation Nov 19–29 — you effectively work only ~Nov 30 – Dec 2 of this block.</p>
   
+  <details class="guide">
+  <summary><span class="chev">▸</span>Rotation guide<span class="gsrc">Ultimate Guide &#183; VA</span></summary>
+  <div class="gbody">
+    <h5>Heads up</h5>
+    <p>VAAC (VA ambulatory care) isn’t covered by the inpatient-focused VA guide or the block manual. The bits that apply:</p>
+    <ul>
+      <li><b>Ambulatory Report:</b> Wed 8–9am in 1A-62.</li>
+      <li><b>Clinic onboarding:</b> ADPAC Liliane Renous (liliane.renous@va.gov).</li>
+      <li><b>PACT teams:</b> identify a patient’s PACT via the CPRS banner; use Teams to arrange follow-up.</li>
+      <li>Site logistics (shuttle, PIV, food, rooms): see the dropdown on <a href="#b4">block 04</a>.</li>
+    </ul>
+  </div>
+</details>
   <div class="roster">
     <section class="rg pre">
       <h4>Interns on before you <span>rotated off Nov 18</span></h4>
@@ -503,6 +752,33 @@ h2{font-family:var(--disp);font-weight:800;font-size:24px;letter-spacing:-.01em}
   </header>
   
   
+  <details class="guide">
+  <summary><span class="chev">▸</span>Rotation guide<span class="gsrc">Block Manual + Parnassus guide</span></summary>
+  <div class="gbody">
+    <h5>The gist</h5>
+    <p><b>LTU = Liver Transplant Unit</b> (Moffitt-Long): primary management of hepatology and liver-transplant patients. Team = senior resident + 2 medicine interns + 1–2 surgery interns, backed by GI / transplant-hepatology / transplant-surgery fellows. (The manual describes the senior’s role — you’d be one of the two medicine interns.)</p>
+    <h5>Typical day</h5>
+    <ul>
+      <li>7–8:45am pre-round / problem list &#8594; 8:45–9:45 rounds (Zoom) &#8594; 9:45–10 MDR &#8594; 10am–finish ICU + walking rounds.</li>
+      <li>Fri 7:30–8:30am transplant-surgery M&amp;M &#183; Tue/Thu 4:30pm HCC tumor board (as needed) &#183; Wed midday transplant selection committee.</li>
+    </ul>
+    <h5>What you’ll learn</h5>
+    <ul>
+      <li>Decompensated cirrhosis management, transplant candidacy and evaluations, multidisciplinary care of complex liver patients on the floor and in the ICU.</li>
+    </ul>
+    <h5>Contacts</h5>
+    <p class="mono">Attending: Courtney Sherman (courtney.sherman@ucsf.edu) &#183; Admin: Jason San (jason.san@ucsf.edu) &#183; <a href="https://ucsf.box.com/s/lyffrzs47dlq0hp60l6w2z87peqmxyuz">LTU admission guidelines</a></p>
+    <h5>Parnassus site basics</h5>
+    <ul>
+      <li><b>Admin:</b> Eva Gamboa (M1480, Eva.Gamboa@ucsf.edu) for parking, FastPay, ID badges. Site director: Brad Monash (M1495).</li>
+      <li><b>Schedules:</b> QGenda (yours) &#183; Amion, login “ucsf hosp” (attendings) &#183; Box &#8594; Parnassus Resources (team day-to-day). Log duty hours weekly in MedHub — locks after 2 weeks.</li>
+      <li><b>Conferences:</b> M989, both daily conferences expected.</li>
+      <li><b>Call rooms (6pm–9am):</b> M801B, L1281, L1286, L1511 (codes in the guide).</li>
+      <li><b>Meds to Beds pharmacy:</b> 500 Parnassus, J level, MU145 — open 7 days.</li>
+      <li><b>Earliest sign-out, non-call days:</b> 3pm weekdays / 2pm weekends. Full guide: bit.ly/ParnassusUG.</li>
+    </ul>
+  </div>
+</details>
   <div class="roster">
     <section class="rg pre">
       <h4>Interns on before you <span>rotated off Dec 2</span></h4>
@@ -533,6 +809,43 @@ h2{font-family:var(--disp);font-weight:800;font-size:24px;letter-spacing:-.01em}
   </header>
   <p class="note">Intern halves flip mid-block: four interns leave Jan 13 and four join Jan 14.</p>
   
+  <details class="guide">
+  <summary><span class="chev">▸</span>Rotation guide<span class="gsrc">Ultimate Guide &#183; Parnassus</span></summary>
+  <div class="gbody">
+    <h5>The gist</h5>
+    <p>Moffitt-Long general medicine: 8 teams (A–H), each 1 resident + 2 interns; team cap 16. You are the primary physician — pre-round on every patient daily, represent the team at MDR, keep the handoff current. Service directors: Adeena Khan, Molly Kantor.</p>
+    <h5>Day 1</h5>
+    <ul>
+      <li>Sign-in from the night team (“Wombat”) <b>before 7am</b>; whole team present at 7am on call days.</li>
+      <li>Team rooms: A/C M1486 &#183; B M980 &#183; D/H M1556 &#183; E M1493 &#183; F M983 &#183; G M987 (door codes in the guide).</li>
+    </ul>
+    <h5>Typical day</h5>
+    <ul>
+      <li>Interns start 6:30am. Long call 6:30am–9pm &#183; post / post-post until 5pm &#183; pre-call until 4pm.</li>
+      <li>Both daily conferences in M989 are expected.</li>
+    </ul>
+    <h5>Call cycle (q4)</h5>
+    <ul>
+      <li><b>Long:</b> holdovers + admissions 7am–6pm — max 7 patients (6 fresh), decay cap 2 after 5pm; 7–9pm whole-team sign-out to Wombat.</li>
+      <li><b>Post:</b> nothing new &#183; <b>Post-post:</b> up to 2–3 holdovers (intern may be off/clinic/IHD) &#183; <b>Pre:</b> no admits, resident or intern may be off.</li>
+      <li>Bounce-backs (&lt;7 days) return to the original team any day; formal sign-out 8:30–9am.</li>
+    </ul>
+    <h5>Tips</h5>
+    <ul>
+      <li>Call the ED back within 15 min of the MOD page, eyes on the patient within 30 min, orders (<b>Medicine Rapid Bed Request</b> + <b>Core IP Adult Admission</b>) within the hour — goal is 60 min page-to-admission.</li>
+      <li>Re-triage questions go through your attending first (doesn’t count toward cap; email the CRs). Holdover algorithm lives on the DHM wiki.</li>
+    </ul>
+    <h5>Parnassus site basics</h5>
+    <ul>
+      <li><b>Admin:</b> Eva Gamboa (M1480, Eva.Gamboa@ucsf.edu) for parking, FastPay, ID badges. Site director: Brad Monash (M1495).</li>
+      <li><b>Schedules:</b> QGenda (yours) &#183; Amion, login “ucsf hosp” (attendings) &#183; Box &#8594; Parnassus Resources (team day-to-day). Log duty hours weekly in MedHub — locks after 2 weeks.</li>
+      <li><b>Conferences:</b> M989, both daily conferences expected.</li>
+      <li><b>Call rooms (6pm–9am):</b> M801B, L1281, L1286, L1511 (codes in the guide).</li>
+      <li><b>Meds to Beds pharmacy:</b> 500 Parnassus, J level, MU145 — open 7 days.</li>
+      <li><b>Earliest sign-out, non-call days:</b> 3pm weekdays / 2pm weekends. Full guide: bit.ly/ParnassusUG.</li>
+    </ul>
+  </div>
+</details>
   <div class="roster">
     <section class="rg pre">
       <h4>Interns on before you <span>rotated off Dec 30</span></h4>
@@ -563,6 +876,44 @@ h2{font-family:var(--disp);font-weight:800;font-size:24px;letter-spacing:-.01em}
   </header>
   
   
+  <details class="guide">
+  <summary><span class="chev">▸</span>Rotation guide<span class="gsrc">Ultimate Guide &#183; SFGH</span></summary>
+  <div class="gbody">
+    <h5>The gist</h5>
+    <p>ZSFG general medicine wards: 5 teams, each 1 resident + 2 interns (± AI/MS3s); cap 16/team, 8/intern; 5-day call cycle. House rule: “rounds are for learning.”</p>
+    <h5>Day 1</h5>
+    <ul>
+      <li>Interns arrive <b>6:30am</b>; cross-cover sign-out happens 7am in H6009.</li>
+      <li>Team rooms: Med 1 H4007 (x69520) &#183; Med 2 H5011 (x69410) &#183; Med 3 H5007 (x30653) &#183; Med 4 H5013 (x69759) &#183; Med 5 H6008 (x69649). Schedule on QGenda.</li>
+    </ul>
+    <h5>Typical day</h5>
+    <ul>
+      <li>7am cross-cover sign-out (H6009) &#8594; 8:30 holdover sign-out in team room &#8594; rounds from 8:30 &#8594; MDR in H5009 (your team’s 11-min slot, 10–11am) &#8594; 12–1 noon conference &#8594; afternoon tasks.</li>
+    </ul>
+    <h5>Call cycle</h5>
+    <ul>
+      <li><b>Long:</b> 7am–9pm, admitting window 12–6pm (cap 7, decay cap 2 pts 5–6pm); Swing takes 2 early admissions if you’re open for ≤2 at 1–3pm; 8–9pm sign out to “Octopus.”</li>
+      <li><b>Post / Tiny / Short:</b> 7–5 (tiny/short: 3 holdovers, 0 fresh) &#183; <b>Pre:</b> 7am–4pm.</li>
+      <li>Nights: “Crab” cross-cover intern (443-1903), “Lobster” night resident, Octopus. Non-call sign-out to Swing from ~3pm (2pm weekends).</li>
+    </ul>
+    <h5>Tips</h5>
+    <ul>
+      <li>Call ED pages back within 15 min — don’t block admissions. Readmits &lt;7 days return to the prior team if a member remains.</li>
+      <li><b>Epic Chat is the primary MD–RN channel</b> (answer within ~60 min; forward chats to Swing and mute notifications when you leave).</li>
+      <li>Meds to Bed: set pharmacy to “ZSFG Outpatient Pharmacy” (delivers 9:30am–6pm). Labs drawn 0400 and 1600.</li>
+      <li>Procedure supplies in H54 (Bldg 25); walk samples to the lab (Bldg 5, 2nd fl) — <b>no tube system</b>. Each team has a Butterfly ultrasound (login in the guide).</li>
+    </ul>
+    <h5>Contacts</h5>
+    <p class="mono">Med MOD 443-5166 &#183; Swing 443-6312 &#183; cross-cover 443-1903 &#183; FIS swing/night 443-3082 &#183; chiefs’ office x61843 &#183; site director rebeccah.brusca@ucsf.edu</p>
+    <h5>ZSFG site basics</h5>
+    <ul>
+      <li><b>Getting there:</b> UC shuttle from 16th St BART (Yellow), Parnassus (Blue), Mission Bay (Gold); SFGH shuttle to 24th St + Civic Center BART. Parking: housestaff pass $190/mo (23rd St kiosk); on-call CAIR cards from Housestaff Coordinator, Bldg 10 3rd fl. Safety escort 24/7: 628-206-8063.</li>
+      <li><b>Access:</b> Epic login = DPH credentials. Scrubs: badge machines Bldg 5 (GK2E) and Bldg 25 (HG912). IT x67378.</li>
+      <li><b>Food:</b> meal card $37/day, cafeteria 6:30am–7pm; weekday lunch Bldg 10 Rm 1219; snacks outside chiefs’ office and in resident lounge GL18.</li>
+      <li><b>Conferences:</b> noon conference 12–1 Bldg 10 2nd fl; Intern Report Mon 1–2pm. Chiefs’ inpatient office x61843.</li>
+    </ul>
+  </div>
+</details>
   <div class="roster">
     <section class="rg pre">
       <h4>Interns on before you <span>rotated off Jan 27</span></h4>
@@ -593,6 +944,19 @@ h2{font-family:var(--disp);font-weight:800;font-size:24px;letter-spacing:-.01em}
   </header>
   
   
+  <details class="guide">
+  <summary><span class="chev">▸</span>Rotation guide<span class="gsrc">Ultimate Guide &#183; VA</span></summary>
+  <div class="gbody">
+    <h5>Heads up</h5>
+    <p>VAAC (VA ambulatory care) isn’t covered by the inpatient-focused VA guide or the block manual. The bits that apply:</p>
+    <ul>
+      <li><b>Ambulatory Report:</b> Wed 8–9am in 1A-62.</li>
+      <li><b>Clinic onboarding:</b> ADPAC Liliane Renous (liliane.renous@va.gov).</li>
+      <li><b>PACT teams:</b> identify a patient’s PACT via the CPRS banner; use Teams to arrange follow-up.</li>
+      <li>Site logistics (shuttle, PIV, food, rooms): see the dropdown on <a href="#b4">block 04</a>.</li>
+    </ul>
+  </div>
+</details>
   <div class="roster">
     <section class="rg pre">
       <h4>Interns on before you <span>rotated off Feb 10</span></h4>
@@ -623,6 +987,41 @@ h2{font-family:var(--disp);font-weight:800;font-size:24px;letter-spacing:-.01em}
   </header>
   
   
+  <details class="guide">
+  <summary><span class="chev">▸</span>Rotation guide<span class="gsrc">Ultimate Guide &#183; SFGH</span></summary>
+  <div class="gbody">
+    <h5>The gist</h5>
+    <p>ZSFG inpatient cardiology, floor + CCU: 4 residents + 4 interns + a night resident (“Kraken”); q4 call. Chief of cardiology: Mary Gray; inpatient director: Jaya Mallidi.</p>
+    <h5>Day 1</h5>
+    <ul>
+      <li>Interns arrive <b>6:30am</b> to pre-round (holdover email lands 6am; residents at 7). Rounds in H6009.</li>
+    </ul>
+    <h5>Typical day</h5>
+    <ul>
+      <li>8:15 code huddle (H32) &#8594; 8:30 rounds (H6009) &#8594; 11:30 cards MDR &#8594; 12 noon conference &#8594; 5pm all teams sign out to the long-call intern &#8594; 8pm long call signs out to Kraken.</li>
+    </ul>
+    <h5>Call cycle</h5>
+    <ul>
+      <li><b>Long:</b> 7am–9pm; team cap 10, admitting cap 6; admit 7am–7pm (decay 1 pt 6–7pm, triage-only 7–8pm). Admits after 5pm are granted, then staffed next morning.</li>
+      <li><b>Post:</b> no new (7–5) &#183; <b>Short:</b> up to 4 holdovers incl. CCU (7–5) &#183; <b>Pre:</b> 7–4.</li>
+      <li>Kraken (8pm–10am) takes all CCU admits overnight, cap 4; 9pm CCU rounds with the ICU charge RN, then calls the on-call cards fellow.</li>
+    </ul>
+    <h5>Tips</h5>
+    <ul>
+      <li>CCU admissions: call the ICU charge RN (x60529) for the bed first; CCU H&amp;P + admission orders; <b>the CCU fellow must hear about every CCU admission within 60 min</b> and supervises procedures.</li>
+      <li>Consent notes go in the physical chart; death note = discharge summary within 24h. Cards has its own Butterflies (login in the guide).</li>
+    </ul>
+    <h5>Contacts</h5>
+    <p class="mono">Cards MOD 443-3508 &#183; Card 1–4 pagers 443-1712 / 1731 / 1738 / 1786 &#183; x-cover 443-7196 &#183; overnight 443-0395</p>
+    <h5>ZSFG site basics</h5>
+    <ul>
+      <li><b>Getting there:</b> UC shuttle from 16th St BART (Yellow), Parnassus (Blue), Mission Bay (Gold); SFGH shuttle to 24th St + Civic Center BART. Parking: housestaff pass $190/mo (23rd St kiosk); on-call CAIR cards from Housestaff Coordinator, Bldg 10 3rd fl. Safety escort 24/7: 628-206-8063.</li>
+      <li><b>Access:</b> Epic login = DPH credentials. Scrubs: badge machines Bldg 5 (GK2E) and Bldg 25 (HG912). IT x67378.</li>
+      <li><b>Food:</b> meal card $37/day, cafeteria 6:30am–7pm; weekday lunch Bldg 10 Rm 1219; snacks outside chiefs’ office and in resident lounge GL18.</li>
+      <li><b>Conferences:</b> noon conference 12–1 Bldg 10 2nd fl; Intern Report Mon 1–2pm. Chiefs’ inpatient office x61843.</li>
+    </ul>
+  </div>
+</details>
   <div class="roster">
     <section class="rg pre">
       <h4>Interns on before you <span>rotated off Feb 24</span></h4>
@@ -653,6 +1052,45 @@ h2{font-family:var(--disp);font-weight:800;font-size:24px;letter-spacing:-.01em}
   </header>
   
   
+  <details class="guide">
+  <summary><span class="chev">▸</span>Rotation guide<span class="gsrc">Ultimate Guide &#183; VA</span></summary>
+  <div class="gbody">
+    <h5>The gist</h5>
+    <p>SFVA inpatient medicine: 5 teams (1 resident + 2 interns), caps 16/team and 8/intern, with the Flow Hospitalist Service (FHS) as admission/logistics backup.</p>
+    <h5>Day 1</h5>
+    <ul>
+      <li>Arrive 6:45–7:10am; take sign-out from the night intern (“FIREFLY”) by 7:10.</li>
+      <li>Team rooms: T1 1A-63 &#183; T2 1A-94 &#183; T3 1A-13B/C &#183; T4 1A-68 &#183; T5 1A-65 (door codes in the guide).</li>
+      <li>Schedule + days off live in the <b>VA Box schedule, not QGenda</b>. Sign-out doc: bit.ly/vaw-signout (open in Edge, logged into VA email).</li>
+    </ul>
+    <h5>Typical day</h5>
+    <ul>
+      <li>7:15 holdover sign-outs &#8594; 8am code huddle outside 1A-62 &#8594; 8–8:50 morning report &#8594; 9–12 bedside rounds + MDR (Teams, bit.ly/VAW-MDR; slots 10:30–11:45) &#8594; 12–1 noon conference &#8594; afternoon tasks.</li>
+    </ul>
+    <h5>Call cycle</h5>
+    <ul>
+      <li><b>Long:</b> 7am–9pm, admit cap 7 (decay 1 after 5pm); MOD phone forwards to your senior at noon; sign out to FIREFLY from 8pm, out before 9.</li>
+      <li>Then <b>Post</b> &#8594; <b>Tiny</b> (no new) &#8594; <b>Short</b> &#8594; <b>Pre</b> (7am–4pm, resident–intern day).</li>
+      <li>Non-call days: sign out to “DRAGONFLY” at 3pm (2pm weekends) once the checklist is done. Re-admits &lt;7 days come back to the discharging team.</li>
+    </ul>
+    <h5>Tips</h5>
+    <ul>
+      <li><b>CPRS has no push alerts</b> — call the RN for any urgent order (antibiotics, anticoagulation, AEDs). Vocera x27901.</li>
+      <li>Labs are drawn 0600/1300/2000 as “Lab Collect”; anything else is Ward Collect + call the RN (add-ons x22260).</li>
+      <li>Procedures always need a fellow/attending in the room — page FHS to supervise paras/LPs (pulm does thoras); order kits via RN text order &gt;30 min ahead.</li>
+      <li>LST note within 72h of admission, and DNR needs an <b>order</b>, not just the note. Direct admits/transfers &#8594; page FHS. End notes with “I have discussed the case with my attending, Dr. ___…”.</li>
+    </ul>
+    <h5>Contacts</h5>
+    <p class="mono">FHS 415-376-2034 (M–F 8–5, in-house 24/7) &#183; MOD 443-7099 &#183; FIREFLY/DRAGONFLY 443-7328 &#183; ICU triage x27319 &#183; RRT: dial 2222 &#183; site director susie.wlodarczyk@ucsf.edu</p>
+    <h5>VA site basics</h5>
+    <ul>
+      <li><b>Getting there:</b> VA–UCSF shuttle (schedule in UCSF mobile app); Transmetro shuttles from Embarcadero BART, Daly City BART, Salesforce Transit Center (PIV needed). Parking permit $12.50/mo at Agent Cashier, Bldg 2 Rm 63 (9–4 M–F).</li>
+      <li><b>Onboarding:</b> ADPAC Sharon Clayton (sharon.clayton1@va.gov) for PIV / computer / meal card. PIV office Bldg 4 Rm 2A-103 (go 7:30am or noon). IT helpdesk x24949 (24/7). In CPRS, set your 6-character e-signature code early.</li>
+      <li><b>Food:</b> free conference lunch weekdays at noon (sign in); free meals from diet office, Bldg 203 BB2 (b’fast 7:45–9:45, lunch 12:30–1:45, dinner 5:30–6:15).</li>
+      <li><b>Rooms:</b> resident room 1A-29; scrubs BB-130B (1/day); conferences in 1A-62 (virtual: bit.ly/UCSF-noon).</li>
+    </ul>
+  </div>
+</details>
   <div class="roster">
     <section class="rg pre">
       <h4>Interns on before you <span>rotated off Mar 24</span></h4>
@@ -683,6 +1121,39 @@ h2{font-family:var(--disp);font-weight:800;font-size:24px;letter-spacing:-.01em}
   </header>
   <p class="note">Nights ~Apr 8–14, then vacation Apr 15–21 closes out the block.</p>
   
+  <details class="guide">
+  <summary><span class="chev">▸</span>Rotation guide<span class="gsrc">Ultimate Guide &#183; Parnassus</span></summary>
+  <div class="gbody">
+    <h5>The gist</h5>
+    <p>UC night float is split into named roles; the intern night role is <b>BADGER</b> (admitting, directly supervised by the WOLF resident). All roles work out of M1486. (“Flex” assignments can differ — confirm your exact role with the chiefs.)</p>
+    <h5>BADGER / WOLF</h5>
+    <ul>
+      <li>Arrive 8pm; admit 8pm–6am — up to 7 combined, max 3 for BADGER; 6–8:30am finish documentation; 8:30am present in team rooms.</li>
+      <li>HAWK (attending) discusses plans after the 3rd admission and teaches.</li>
+    </ul>
+    <h5>Who else is on at night</h5>
+    <ul>
+      <li><b>FOX</b> (8pm–7:30am): cross-covers non-call teams; signs day teams in 6:30–7am.</li>
+      <li><b>WOMBAT</b> (7pm–7:30am): cross-covers call teams, leads all non-ICU codes; takes long-call sign-out 7–9pm.</li>
+      <li><b>BAT</b> (2pm–12am): proactive task/procedure help; hands cross-cover to FOX 8–9pm.</li>
+    </ul>
+    <h5>Tips</h5>
+    <ul>
+      <li>Role/task sheets on Box: <a href="https://ucsf.box.com/s/fdnryqn1654kmhwj9v8cc2k8z8x9zhiz">BADGER/WOLF</a> &#183; <a href="https://ucsf.box.com/s/h3dk72ons84hvttdw9rzjkpcjg539gsq">FOX</a> &#183; <a href="https://ucsf.box.com/s/zpk0dyvalw76r6fb9eakgwwetcp3pt26">BAT</a> &#183; <a href="https://ucsf.box.com/s/ya8el1ui4e8hnnanasd4oomzuq4puwvt">WOMBAT</a>.</li>
+      <li>The code pager carries a zip-tied key to the two code elevators. Dead pager &#8594; spare batteries at the 10M nursing station or IT (415) 514-4100. Missing pager &#8594; tell the chiefs immediately.</li>
+      <li><a href="https://ucsf.box.com/s/x0aoa1rlu712bffevsnl5tw3inf9sio5">Code Blue orientation resources</a>.</li>
+    </ul>
+    <h5>Parnassus site basics</h5>
+    <ul>
+      <li><b>Admin:</b> Eva Gamboa (M1480, Eva.Gamboa@ucsf.edu) for parking, FastPay, ID badges. Site director: Brad Monash (M1495).</li>
+      <li><b>Schedules:</b> QGenda (yours) &#183; Amion, login “ucsf hosp” (attendings) &#183; Box &#8594; Parnassus Resources (team day-to-day). Log duty hours weekly in MedHub — locks after 2 weeks.</li>
+      <li><b>Conferences:</b> M989, both daily conferences expected.</li>
+      <li><b>Call rooms (6pm–9am):</b> M801B, L1281, L1286, L1511 (codes in the guide).</li>
+      <li><b>Meds to Beds pharmacy:</b> 500 Parnassus, J level, MU145 — open 7 days.</li>
+      <li><b>Earliest sign-out, non-call days:</b> 3pm weekdays / 2pm weekends. Full guide: bit.ly/ParnassusUG.</li>
+    </ul>
+  </div>
+</details>
   <div class="roster">
     <section class="rg pre">
       <h4>Interns on before you <span>rotated off Apr 7</span></h4>
@@ -713,6 +1184,44 @@ h2{font-family:var(--disp);font-weight:800;font-size:24px;letter-spacing:-.01em}
   </header>
   <p class="note">Intern halves flip mid-block: May 5 → May 6.</p>
   
+  <details class="guide">
+  <summary><span class="chev">▸</span>Rotation guide<span class="gsrc">Ultimate Guide &#183; SFGH</span></summary>
+  <div class="gbody">
+    <h5>The gist</h5>
+    <p>ZSFG general medicine wards: 5 teams, each 1 resident + 2 interns (± AI/MS3s); cap 16/team, 8/intern; 5-day call cycle. House rule: “rounds are for learning.”</p>
+    <h5>Day 1</h5>
+    <ul>
+      <li>Interns arrive <b>6:30am</b>; cross-cover sign-out happens 7am in H6009.</li>
+      <li>Team rooms: Med 1 H4007 (x69520) &#183; Med 2 H5011 (x69410) &#183; Med 3 H5007 (x30653) &#183; Med 4 H5013 (x69759) &#183; Med 5 H6008 (x69649). Schedule on QGenda.</li>
+    </ul>
+    <h5>Typical day</h5>
+    <ul>
+      <li>7am cross-cover sign-out (H6009) &#8594; 8:30 holdover sign-out in team room &#8594; rounds from 8:30 &#8594; MDR in H5009 (your team’s 11-min slot, 10–11am) &#8594; 12–1 noon conference &#8594; afternoon tasks.</li>
+    </ul>
+    <h5>Call cycle</h5>
+    <ul>
+      <li><b>Long:</b> 7am–9pm, admitting window 12–6pm (cap 7, decay cap 2 pts 5–6pm); Swing takes 2 early admissions if you’re open for ≤2 at 1–3pm; 8–9pm sign out to “Octopus.”</li>
+      <li><b>Post / Tiny / Short:</b> 7–5 (tiny/short: 3 holdovers, 0 fresh) &#183; <b>Pre:</b> 7am–4pm.</li>
+      <li>Nights: “Crab” cross-cover intern (443-1903), “Lobster” night resident, Octopus. Non-call sign-out to Swing from ~3pm (2pm weekends).</li>
+    </ul>
+    <h5>Tips</h5>
+    <ul>
+      <li>Call ED pages back within 15 min — don’t block admissions. Readmits &lt;7 days return to the prior team if a member remains.</li>
+      <li><b>Epic Chat is the primary MD–RN channel</b> (answer within ~60 min; forward chats to Swing and mute notifications when you leave).</li>
+      <li>Meds to Bed: set pharmacy to “ZSFG Outpatient Pharmacy” (delivers 9:30am–6pm). Labs drawn 0400 and 1600.</li>
+      <li>Procedure supplies in H54 (Bldg 25); walk samples to the lab (Bldg 5, 2nd fl) — <b>no tube system</b>. Each team has a Butterfly ultrasound (login in the guide).</li>
+    </ul>
+    <h5>Contacts</h5>
+    <p class="mono">Med MOD 443-5166 &#183; Swing 443-6312 &#183; cross-cover 443-1903 &#183; FIS swing/night 443-3082 &#183; chiefs’ office x61843 &#183; site director rebeccah.brusca@ucsf.edu</p>
+    <h5>ZSFG site basics</h5>
+    <ul>
+      <li><b>Getting there:</b> UC shuttle from 16th St BART (Yellow), Parnassus (Blue), Mission Bay (Gold); SFGH shuttle to 24th St + Civic Center BART. Parking: housestaff pass $190/mo (23rd St kiosk); on-call CAIR cards from Housestaff Coordinator, Bldg 10 3rd fl. Safety escort 24/7: 628-206-8063.</li>
+      <li><b>Access:</b> Epic login = DPH credentials. Scrubs: badge machines Bldg 5 (GK2E) and Bldg 25 (HG912). IT x67378.</li>
+      <li><b>Food:</b> meal card $37/day, cafeteria 6:30am–7pm; weekday lunch Bldg 10 Rm 1219; snacks outside chiefs’ office and in resident lounge GL18.</li>
+      <li><b>Conferences:</b> noon conference 12–1 Bldg 10 2nd fl; Intern Report Mon 1–2pm. Chiefs’ inpatient office x61843.</li>
+    </ul>
+  </div>
+</details>
   <div class="roster">
     <section class="rg pre">
       <h4>Interns on before you <span>rotated off Apr 21</span></h4>
@@ -767,6 +1276,7 @@ h2{font-family:var(--disp);font-weight:800;font-size:24px;letter-spacing:-.01em}
     <li>Night coverage runs under separate rotation codes (e.g., "SF ICU Night," "SFW Night Intern," "SFCC Night Flex"), so night-float trainees aren't included in ward-block rosters except where noted on the SF ICU card.</li>
     <li>The (A) and (N) tags after some intern names are reproduced exactly as they appear in the source files.</li>
     <li>The final week of the year, <strong>Jun 21–28, 2027</strong>, is blank for the entire intern class in these exports.</li>
+    <li>The <strong>Rotation guide</strong> dropdowns condense the site “Ultimate Guides” (Parnassus 6/2026, SFGH 2025–26, VA) and the Categorical Block Manual 2025–26 — they describe last year’s structures, so times, caps, and room assignments may shift for 2026–27. Door codes and shared logins were deliberately left off this public page (they’re in the source guides). No guide covers ClinicZ1600 or UCED; the VA ambulatory codes (VAPQJ/VAAC) get site logistics only.</li>
   </ul>
   <p class="foot">Verified against 98,243 person-day assignments across both exports · generated Jul 3, 2026</p>
 </section>
