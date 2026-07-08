@@ -160,6 +160,34 @@ details.guide summary .gsrc{margin-left:auto;font-weight:400;letter-spacing:.04e
 .gbody b,.gbody strong{color:var(--ink)}
 .gbody .mono{font-family:var(--mono);font-size:12.5px}
 
+/* live schedule */
+details.live{margin:18px 0 0;border:1px solid var(--line);border-radius:14px;background:var(--card);overflow:hidden}
+details.live summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:14px 18px;user-select:none}
+details.live summary::-webkit-details-marker{display:none}
+details.live summary:hover{background:#FBFDFC}
+details.live summary .chev{display:inline-block;transition:transform .15s;color:var(--mut)}
+details.live[open] summary .chev{transform:rotate(90deg)}
+details.live summary .lt{font-family:var(--disp);font-weight:800;font-size:17px;letter-spacing:-.01em}
+details.live summary .lsrc{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--mut);text-align:right}
+.lvwrap{border-top:1px solid var(--line);max-height:430px;overflow-y:auto;padding:6px 0}
+.lvday{display:grid;grid-template-columns:112px 1fr;gap:4px 14px;align-items:start;padding:7px 18px;border-bottom:1px dashed var(--line)}
+.lvday:last-child{border-bottom:0}
+.lvday.today{background:var(--sf-t)}
+.lvday.wkend{background:#FAFCFB}
+.lvday.today.wkend{background:var(--sf-t)}
+.lvd{font-family:var(--mono);font-size:12px;color:var(--mut);padding-top:3px;white-space:nowrap}
+.lvday.today .lvd{color:var(--ink);font-weight:600}
+.lvt{display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+.lvrot{font-family:var(--disp);font-weight:700;font-size:12.5px;color:#fff;background:var(--blank);border-radius:7px;padding:3px 10px;white-space:nowrap}
+.lvrot.uc{background:var(--uc)}.lvrot.sf{background:var(--sf)}.lvrot.va{background:var(--va)}
+.lvrot.clinic{background:var(--clinic)}.lvrot.nights{background:var(--nights)}
+.lvrot.off{background:repeating-linear-gradient(-45deg,var(--vac) 0 4px,#fff 4px 8px);color:#7A5210;border:1px solid var(--vac)}
+.lvtask{font-size:12.5px;background:var(--paper);border:1px solid var(--line);border-radius:7px;padding:2px 9px;white-space:nowrap}
+.lvtask em{font-style:normal;font-family:var(--mono);font-size:10.5px;color:var(--mut);margin-right:5px}
+.lvnone{color:var(--blank);font-size:12.5px;padding-top:3px}
+.lvmsg{padding:16px 18px;font-size:13.5px;color:var(--mut)}
+@media (max-width:700px){.lvday{grid-template-columns:1fr;gap:3px}.lvd{padding-top:0}}
+
 /* caveats */
 .cavs{margin-top:40px;border-top:2px solid var(--ink);padding-top:16px}
 .cavs h2{font-size:19px}
@@ -189,6 +217,11 @@ details.guide summary .gsrc{margin-left:auto;font-weight:400;letter-spacing:.04e
     <div class="fact"><b>Who counts as whom</b>Interns = the 2026–27 class ("Last, F" names + off-service placeholders). Residents = R2/R3s ("LastnameF").</div>
     <div class="fact"><b>Data horizon</b>Call/team-level detail exists only through mid-Aug — later blocks were assigned at the rotation level when this was printed.</div>
   </div>
+
+<details class="live" id="live">
+  <summary><span class="chev">▸</span><span class="lt">Live schedule</span><span class="lsrc">streams from QGenda · <span id="lvupd">loading…</span></span></summary>
+  <div class="lvwrap" id="lvwrap"><p class="lvmsg">Loading the QGenda feed…</p></div>
+</details>
 </header>
 
 
@@ -1282,5 +1315,57 @@ details.guide summary .gsrc{margin-left:auto;font-weight:400;letter-spacing:.04e
 </section>
 
 </div>
+
+<script>
+(function(){
+  var wrap=document.getElementById('lvwrap'),upd=document.getElementById('lvupd');
+  function siteOf(t){
+    var u=t.toUpperCase();
+    if(/VACATION|^OFF\b/.test(u))return'off';
+    if(/^FLEX NIGHT|NIGHT FLOAT/.test(u))return'nights';
+    if(/Z1600|CLINIC|IHD/.test(u))return'clinic';
+    if(/^SF|ZSFG/.test(u))return'sf';
+    if(/^VA/.test(u))return'va';
+    if(/^UC/.test(u))return'uc';
+    return'';
+  }
+  function fmtT(hm){
+    var h=+hm.slice(0,2),m=hm.slice(3),ap=h<12?'a':'p';h=h%12||12;
+    return h+(m!=='00'?':'+m:'')+ap;
+  }
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+  fetch('schedule-live.json?t='+Date.now()).then(function(r){
+    if(!r.ok)throw 0;return r.json();
+  }).then(function(data){
+    upd.textContent='updated '+data.updated;
+    var byDay={};
+    data.events.forEach(function(e){(byDay[e.d]=byDay[e.d]||[]).push(e);});
+    var days=Object.keys(byDay).sort();
+    if(!days.length){wrap.innerHTML='<p class="lvmsg">The feed came back empty.</p>';return;}
+    var now=new Date(),tod=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0')+'-'+String(now.getDate()).padStart(2,'0');
+    var start=new Date(now);start.setDate(start.getDate()-1);
+    var last=days[days.length-1];
+    var names=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],mos=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var html='',d=new Date(start),guard=0;
+    function iso(dt){return dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0')+'-'+String(dt.getDate()).padStart(2,'0');}
+    while(iso(d)<=last&&guard++<400){
+      var k=iso(d),evs=byDay[k]||[],dow=d.getDay();
+      var cls='lvday'+(k===tod?' today':'')+((dow===0||dow===6)?' wkend':'');
+      var cells='';
+      evs.forEach(function(e){
+        if(e.r){cells+='<span class="lvrot '+siteOf(e.t)+'">'+esc(e.t)+'</span>';}
+        else{cells+='<span class="lvtask">'+(e.s?'<em>'+fmtT(e.s)+(e.e?'–'+fmtT(e.e):'')+'</em>':'')+esc(e.t)+'</span>';}
+      });
+      if(!cells)cells='<span class="lvnone">—</span>';
+      html+='<div class="'+cls+'"><span class="lvd">'+names[dow]+' '+mos[d.getMonth()]+' '+d.getDate()+(k===tod?' · today':'')+'</span><span class="lvt">'+cells+'</span></div>';
+      d.setDate(d.getDate()+1);
+    }
+    wrap.innerHTML=html;
+  }).catch(function(){
+    wrap.innerHTML='<p class="lvmsg">Couldn’t load the live feed — the first sync may not have run yet. It refreshes hourly from QGenda.</p>';
+    upd.textContent='unavailable';
+  });
+})();
+</script>
 </body>
 </html>
