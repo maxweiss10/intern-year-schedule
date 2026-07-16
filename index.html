@@ -288,6 +288,27 @@ details.live summary .lsrc a:hover{border-bottom-style:solid}
 .cavs li{margin-bottom:8px}
 .foot{margin-top:34px;font-family:var(--mono);font-size:11px;color:var(--mut)}
 
+/* mobile */
+@media (max-width:700px){
+  .eyebrow{font-size:11px;letter-spacing:.1em}
+  .nowcard{min-width:0}
+  .nowcard p{display:flex;flex-wrap:wrap;align-items:baseline}
+  .nowcard b{font-size:18px}
+  .nmeta{white-space:normal;width:100%;margin-top:3px}
+  details.live summary{flex-wrap:wrap;gap:6px 10px;padding:12px 14px}
+  details.live summary .lt{font-size:15.5px;white-space:nowrap}
+  .lfrom{display:none}
+  .strip{height:40px}
+  .seg{padding:0 5px}
+  .seg span{display:none}
+  .seg b{font-size:11px;opacity:1}
+  .index .dt{font-size:10.5px}
+  details.guide summary{gap:7px;padding:10px 12px}
+  details.guide summary .gsrc{display:none}
+  .lvwrap{-webkit-overflow-scrolling:touch}
+  .hdr .fact{padding:11px 13px}
+}
+
 @media print{
   body{padding:0;background:#fff;font-size:12px}
   .seg,.pill.site,.vac,.dot,.slot.me,.who.you,.seats tr.me td{-webkit-print-color-adjust:exact;print-color-adjust:exact}
@@ -326,7 +347,7 @@ details.live summary .lsrc a:hover{border-bottom-style:solid}
 </header>
 
 <details class="live" id="live">
-  <summary><span class="chev">▸</span><span class="lt">Live schedule</span><span class="lsrc">from QGenda · <span id="lvupd">checking…</span> · <a id="lvsync" href="https://github.com/maxweiss10/intern-year-schedule/actions/workflows/qgenda-sync.yml" target="_blank" rel="noopener">sync now ↗</a></span></summary>
+  <summary><span class="chev">▸</span><span class="lt">Live schedule</span><span class="lsrc"><span class="lfrom">from QGenda · </span><span id="lvupd">checking…</span> · <a id="lvsync" href="https://github.com/maxweiss10/intern-year-schedule/actions/workflows/qgenda-sync.yml" target="_blank" rel="noopener">sync now ↗</a></span></summary>
   <div class="lvwrap" id="lvwrap"><p class="lvmsg">Loading the QGenda feed…</p></div>
 </details>
 
@@ -1440,7 +1461,7 @@ details.live summary .lsrc a:hover{border-bottom-style:solid}
       if(!run)return;
       var m=Math.round((Date.now()-new Date(run.updated_at))/60000);
       upd.textContent=m<1?'synced just now':'synced '+(m<60?m+'m':(m/60).toFixed(1).replace(/\.0$/,'')+'h')+' ago';
-      if(m>45)upd.classList.add('stale');
+      if(m>150)upd.classList.add('stale');
     })
     .catch(function(){upd.textContent='sync status n/a';});
   function siteOf(t){
