@@ -315,6 +315,28 @@ details.live summary .lsrc a:hover{border-bottom-style:solid}
   .card,.panel{break-inside:avoid;box-shadow:none}
   .thint{display:none}
 }
+
+/* ---------- next-week preview ---------- */
+.nxtweek{margin:18px 0 0;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 22px 20px;box-shadow:var(--shadow)}
+.nwtitle{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin-bottom:12px}
+.nwscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.nwgrid{display:grid;grid-template-columns:repeat(7,minmax(94px,1fr));gap:6px;min-width:540px}
+.nwday{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 10px 11px;min-width:0}
+.nwday.nwtoday{border-color:color-mix(in srgb,var(--uc) 45%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--uc) 22%,transparent)}
+.nwdn{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);line-height:1;margin-bottom:3px}
+.nwtdy{background:var(--ink);color:var(--paper);border-radius:4px;padding:1px 5px;font-weight:600}
+.nwdate{font-family:var(--mono);font-size:11px;color:var(--mut2);margin-bottom:7px}
+.nwrot{font-family:var(--disp);font-weight:700;font-size:11px;border-radius:5px;padding:2px 7px 3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:5px;line-height:1.35}
+.nwrot.uc{background:var(--uc-t);color:var(--ucx)}.nwrot.sf{background:var(--sf-t);color:var(--sfx)}
+.nwrot.va{background:var(--va-t);color:var(--vaink)}.nwrot.clinic{background:var(--clinic-t);color:var(--clx)}
+.nwrot.nights{background:var(--nights-t);color:var(--nix)}.nwrot.off{background:var(--offbg);color:var(--vaink)}
+.nwrot.other{background:var(--otherbg);color:var(--ink)}
+.nwrot.norot{background:none;padding:2px 0;color:var(--mut2);font-family:var(--mono);font-weight:400;font-size:12px}
+.nwtasks{display:flex;flex-direction:column;gap:2px}
+.nwtask{font-size:11px;color:var(--ink3);line-height:1.35;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nwtask em{font-style:normal;font-family:var(--mono);font-size:10px;color:var(--mut);margin-right:3px}
+.nwtask.nwoffd{font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--mut2)}
+@media(max-width:700px){.nxtweek{padding:14px 14px 16px}}
 </style>
 </head>
 <body>
@@ -322,6 +344,7 @@ details.live summary .lsrc a:hover{border-bottom-style:solid}
 
 <nav class="topnav">
   <span class="nbrand">MW · Intern Year ’26–27</span>
+  <a href="#nextweek">Week</a>
   <a href="#live">Live</a>
   <a href="#tl">Year</a>
   <a href="#blocks">Blocks</a>
@@ -345,6 +368,11 @@ details.live summary .lsrc a:hover{border-bottom-style:solid}
     <div class="fact"><b>Data horizon</b>Call/team-level detail exists only through mid-Aug — later blocks were assigned at the rotation level when this was printed.</div>
   </div>
 </header>
+
+<section class="nxtweek" id="nextweek" hidden>
+  <div class="nwtitle">Your next week</div>
+  <div class="nwscroll" id="nwscroll"></div>
+</section>
 
 <details class="live" id="live">
   <summary><span class="chev">▸</span><span class="lt">Live schedule</span><span class="lsrc"><span class="lfrom">from QGenda · </span><span id="lvupd">checking…</span> · <a id="lvsync" href="https://github.com/maxweiss10/intern-year-schedule/actions/workflows/qgenda-sync.yml" target="_blank" rel="noopener">sync now ↗</a></span></summary>
@@ -1518,6 +1546,49 @@ details.live summary .lsrc a:hover{border-bottom-style:solid}
           document.getElementById('nextDot').style.background=dotc(nT);
         }else{document.getElementById('nextTitle').textContent='—';}
         nr.hidden=false;
+      }
+    }catch(_){}
+    try{
+      var nwEl=document.getElementById('nwscroll');
+      if(nwEl){
+        var nwBase=new Date(tod+'T12:00');
+        var nwDayNms=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+        var nwHtml='<div class="nwgrid">';
+        for(var di=0;di<7;di++){
+          var nwDt=new Date(nwBase);nwDt.setDate(nwDt.getDate()+di);
+          var nwK=nwDt.getFullYear()+'-'+String(nwDt.getMonth()+1).padStart(2,'0')+'-'+String(nwDt.getDate()).padStart(2,'0');
+          var nwEvs=byDay[nwK]||[];
+          var nwRot=null;
+          for(var nwi=0;nwi<nwEvs.length;nwi++){if(nwEvs[nwi].r){nwRot=nwEvs[nwi].t;break;}}
+          var nwSt=nwRot?siteOf(nwRot):'';
+          var nwRotCls=nwRot?(nwSt||'other'):'norot';
+          var isToday=(di===0);
+          var nwDayLbl=isToday?'<span class="nwtdy">Today</span>':nwDayNms[nwDt.getDay()];
+          nwHtml+='<div class="nwday'+(isToday?' nwtoday':'')+'">'+
+            '<div class="nwdn">'+nwDayLbl+'</div>'+
+            '<div class="nwdate">'+mos[nwDt.getMonth()]+' '+nwDt.getDate()+'</div>'+
+            '<div class="nwrot '+nwRotCls+'">'+esc(nwRot||'—')+'</div>'+
+            '<div class="nwtasks">';
+          var nwCnt=0;
+          for(var nwj=0;nwj<nwEvs.length;nwj++){
+            var nwe=nwEvs[nwj];
+            if(nwe.r||nwCnt>=3)continue;
+            if(/^(off|vacation)\b/i.test(nwe.t)){
+              nwHtml+='<div class="nwtask nwoffd">'+esc(nwe.t.toUpperCase())+'</div>';nwCnt++;continue;
+            }
+            var nwt=nwe.t;
+            if(nwRot){var nww=nwt.split(' ');while(nww.length>1&&nwRot.toUpperCase().indexOf(nww[0].toUpperCase())>-1)nww.shift();nwt=nww.join(' ');}
+            var nwtm='',nwmt=nwt.match(/\b\d{1,2}(?::\d{2})?[ap]m?\s*[-–]\s*\d{1,2}(?::\d{2})?[ap]m?\b/i);
+            if(nwmt){nwtm=nwmt[0].replace(/\s+/g,'');nwt=nwt.replace(nwmt[0],'').replace(/\s{2,}/g,' ').trim();}
+            else if(nwe.s){nwtm=fmtT(nwe.s)+(nwe.e?'–'+fmtT(nwe.e):'');}
+            nwHtml+='<div class="nwtask" title="'+esc(nwe.t)+'">'+(nwtm?'<em>'+esc(nwtm)+'</em>':'')+esc(nwt)+'</div>';
+            nwCnt++;
+          }
+          nwHtml+='</div></div>';
+        }
+        nwHtml+='</div>';
+        nwEl.innerHTML=nwHtml;
+        document.getElementById('nextweek').hidden=false;
       }
     }catch(_){}
     var html='<div class="lvgrid"><div class="lvhead">';
