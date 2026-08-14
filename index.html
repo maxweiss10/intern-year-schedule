@@ -318,25 +318,27 @@ details.live summary .lsrc a:hover{border-bottom-style:solid}
 
 /* ---------- next-week preview ---------- */
 .nxtweek{margin:18px 0 0;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 22px 20px;box-shadow:var(--shadow)}
-.hdr .nxtweek{background:var(--paper);box-shadow:none;margin:26px 0 0}
-.hdr .nwday{background:var(--card)}
+.nxtweek{margin:22px 0 0}
 .nwtitle{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin-bottom:12px}
 .nwscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .nwgrid{display:grid;grid-template-columns:repeat(7,minmax(74px,1fr));gap:5px;min-width:448px}
 .nwday{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 10px 11px;min-width:0}
+.nwday.nwwkend{background:var(--otherbg);border-style:dashed}
+.nwday.nwwkend .nwdn{color:var(--mut2)}
 .nwday.nwtoday{border-color:color-mix(in srgb,var(--uc) 45%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--uc) 22%,transparent)}
 .nwdn{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);line-height:1;margin-bottom:3px}
 .nwtdy{background:var(--ink);color:var(--paper);border-radius:4px;padding:1px 5px;font-weight:600}
 .nwdate{font-family:var(--mono);font-size:11px;color:var(--mut2);margin-bottom:7px}
-.nwrot{font-family:var(--disp);font-weight:700;font-size:11px;border-radius:5px;padding:2px 7px 3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:5px;line-height:1.35}
+.nwrot{font-family:var(--disp);font-weight:700;font-size:11px;border-radius:5px;padding:2px 7px 3px;margin-bottom:5px;line-height:1.35;overflow-wrap:anywhere}
 .nwrot.uc{background:var(--uc-t);color:var(--ucx)}.nwrot.sf{background:var(--sf-t);color:var(--sfx)}
 .nwrot.va{background:var(--va-t);color:var(--vaink)}.nwrot.clinic{background:var(--clinic-t);color:var(--clx)}
 .nwrot.nights{background:var(--nights-t);color:var(--nix)}.nwrot.off{background:var(--offbg);color:var(--vaink)}
 .nwrot.other{background:var(--otherbg);color:var(--ink)}
 .nwrot.norot{background:none;padding:2px 0;color:var(--mut2);font-family:var(--mono);font-weight:400;font-size:12px}
-.nwtasks{display:flex;flex-direction:column;gap:2px}
-.nwtask{font-size:11px;color:var(--ink3);line-height:1.35;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.nwtask em{font-style:normal;font-family:var(--mono);font-size:10px;color:var(--mut);margin-right:3px}
+.nwtasks{display:flex;flex-direction:column;gap:4px}
+.nwtask{font-size:11px;color:var(--ink3);line-height:1.4;overflow-wrap:anywhere}
+.nwtask+.nwtask{border-top:1px dashed var(--line);padding-top:4px}
+.nwtask em{font-style:normal;font-family:var(--mono);font-size:10px;color:var(--mut);margin-right:3px;white-space:nowrap}
 .nwtask.nwoffd{font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--mut2)}
 @media(max-width:700px){.nxtweek{padding:14px 14px 16px}}
 </style>
@@ -358,11 +360,6 @@ details.live summary .lsrc a:hover{border-bottom-style:solid}
   <h1>Max Weiss <span class="yr">2026–27</span></h1>
   <p class="srcline">Built from the program's <b>Calendar&nbsp;By&nbsp;Staff</b> and <b>Grid&nbsp;By&nbsp;Staff</b> exports (both printed 7/3/2026; the two agree on every assignment). You appear as <b>Weiss,&nbsp;M</b> — <b>WeissS</b> in these files is a different person, a senior resident.</p>
 
-<section class="nxtweek" id="nextweek" hidden>
-  <div class="nwtitle">Your next week</div>
-  <div class="nwscroll" id="nwscroll"></div>
-</section>
-
 <div class="nowrow" id="nowrow" hidden>
   <div class="nowcard"><span class="nlbl">Now</span><p><i class="ndot" id="nowDot"></i><b id="nowTitle"></b><span class="nmeta" id="nowMeta"></span></p><div class="nprog"><i id="nowBar"></i></div></div>
   <div class="nowcard"><span class="nlbl">Up next</span><p><i class="ndot" id="nextDot"></i><b id="nextTitle"></b><span class="nmeta" id="nextMeta"></span></p></div>
@@ -371,10 +368,13 @@ details.live summary .lsrc a:hover{border-bottom-style:solid}
   <div class="facts">
     <div class="fact"><b>Block rhythm</b>Rotations flip on <strong>Thursdays</strong>; date ranges are exact from the file.</div>
     <div class="fact"><b>Vacations</b>Sep 2–9 · Nov 19–29 · Apr 15–21</div>
-    <div class="fact"><b>Who counts as whom</b>Interns = the 2026–27 class ("Last, F" names + off-service placeholders). Residents = R2/R3s ("LastnameF").</div>
-    <div class="fact"><b>Data horizon</b>Call/team-level detail exists only through mid-Aug — later blocks were assigned at the rotation level when this was printed.</div>
   </div>
 </header>
+
+<section class="nxtweek" id="nextweek" hidden>
+  <div class="nwtitle">Your next week</div>
+  <div class="nwscroll" id="nwscroll"></div>
+</section>
 
 <details class="live" id="live">
   <summary><span class="chev">▸</span><span class="lt">Live schedule</span><span class="lsrc"><span class="lfrom">from QGenda · </span><span id="lvupd">checking…</span> · <a id="lvsync" href="https://github.com/maxweiss10/intern-year-schedule/actions/workflows/qgenda-sync.yml" target="_blank" rel="noopener">sync now ↗</a></span></summary>
@@ -1564,27 +1564,24 @@ details.live summary .lsrc a:hover{border-bottom-style:solid}
           for(var nwi=0;nwi<nwEvs.length;nwi++){if(nwEvs[nwi].r){nwRot=nwEvs[nwi].t;break;}}
           var nwSt=nwRot?siteOf(nwRot):'';
           var nwRotCls=nwRot?(nwSt||'other'):'norot';
-          var isToday=(di===0);
-          var nwDayLbl=isToday?'<span class="nwtdy">Today</span>':nwDayNms[nwDt.getDay()];
-          nwHtml+='<div class="nwday'+(isToday?' nwtoday':'')+'">'+
+          var isToday=(di===0),nwDow=nwDt.getDay(),isWknd=(nwDow===0||nwDow===6);
+          var nwDayLbl=isToday?'<span class="nwtdy">Today</span>':nwDayNms[nwDow];
+          nwHtml+='<div class="nwday'+(isToday?' nwtoday':'')+(isWknd?' nwwkend':'')+'">'+
             '<div class="nwdn">'+nwDayLbl+'</div>'+
             '<div class="nwdate">'+mos[nwDt.getMonth()]+' '+nwDt.getDate()+'</div>'+
             '<div class="nwrot '+nwRotCls+'">'+esc(nwRot||'—')+'</div>'+
             '<div class="nwtasks">';
-          var nwCnt=0;
           for(var nwj=0;nwj<nwEvs.length;nwj++){
             var nwe=nwEvs[nwj];
-            if(nwe.r||nwCnt>=3)continue;
+            if(nwe.r)continue;
             if(/^(off|vacation)\b/i.test(nwe.t)){
-              nwHtml+='<div class="nwtask nwoffd">'+esc(nwe.t.toUpperCase())+'</div>';nwCnt++;continue;
+              nwHtml+='<div class="nwtask nwoffd">'+esc(nwe.t.toUpperCase())+'</div>';continue;
             }
             var nwt=nwe.t;
-            if(nwRot){var nww=nwt.split(' ');while(nww.length>1&&nwRot.toUpperCase().indexOf(nww[0].toUpperCase())>-1)nww.shift();nwt=nww.join(' ');}
             var nwtm='',nwmt=nwt.match(/\b\d{1,2}(?::\d{2})?[ap]m?\s*[-–]\s*\d{1,2}(?::\d{2})?[ap]m?\b/i);
             if(nwmt){nwtm=nwmt[0].replace(/\s+/g,'');nwt=nwt.replace(nwmt[0],'').replace(/\s{2,}/g,' ').trim();}
             else if(nwe.s){nwtm=fmtT(nwe.s)+(nwe.e?'–'+fmtT(nwe.e):'');}
-            nwHtml+='<div class="nwtask" title="'+esc(nwe.t)+'">'+(nwtm?'<em>'+esc(nwtm)+'</em>':'')+esc(nwt)+'</div>';
-            nwCnt++;
+            nwHtml+='<div class="nwtask">'+(nwtm?'<em>'+esc(nwtm)+'</em>':'')+esc(nwt)+'</div>';
           }
           nwHtml+='</div></div>';
         }
