@@ -32,3 +32,16 @@ jobs:
             git commit -m "Update live schedule data"
             git push
           }
+
+      - name: Keepalive (GitHub disables scheduled workflows after 60 days without a commit)
+        run: |
+          # Only new commits count as repository activity, so a quiet feed would
+          # let this schedule lapse. If nothing has been committed in 45 days,
+          # push an empty commit to reset the clock. Nothing else changes.
+          idle_days=$(( ( $(date +%s) - $(git log -1 --format=%ct) ) / 86400 ))
+          echo "last commit was $idle_days day(s) ago"
+          [ "$idle_days" -ge 45 ] || exit 0
+          git config user.name "qgenda-sync[bot]"
+          git config user.email "actions@users.noreply.github.com"
+          git commit --allow-empty -m "Keepalive: reset GitHub's 60-day scheduled-workflow timer"
+          git push
